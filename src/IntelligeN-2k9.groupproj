@@ -375,6 +375,9 @@
 			<Projects Include="sdk\plugins\imagehoster\imgur.com\imgurcom.dproj">
 				<Dependencies/>
 			</Projects>
+			<Projects Include="sdk\plugins\imagehoster\pixelfox.cc\pixelfoxcc.dproj">
+				<Dependencies/>
+			</Projects>
 			<Projects Include="sdk\plugins\imagehoster\picfront.org\picfrontorg.dproj">
 				<Dependencies/>
 			</Projects>
@@ -1507,6 +1510,15 @@
 		</Target>
 		<Target Name="imgurcom:Make">
 			<MSBuild Targets="Make" Projects="sdk\plugins\imagehoster\imgur.com\imgurcom.dproj"/>
+		</Target>
+		<Target Name="pixelfoxcc">
+			<MSBuild Projects="sdk\plugins\imagehoster\pixelfox.cc\pixelfoxcc.dproj"/>
+		</Target>
+		<Target Name="pixelfoxcc:Clean">
+			<MSBuild Targets="Clean" Projects="sdk\plugins\imagehoster\pixelfox.cc\pixelfoxcc.dproj"/>
+		</Target>
+		<Target Name="pixelfoxcc:Make">
+			<MSBuild Targets="Make" Projects="sdk\plugins\imagehoster\pixelfox.cc\pixelfoxcc.dproj"/>
 		</Target>
 		<Target Name="picfrontorg">
 			<MSBuild Projects="sdk\plugins\imagehoster\picfront.org\picfrontorg.dproj"/>

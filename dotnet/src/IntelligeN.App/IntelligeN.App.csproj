@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IntelligeN.App.Contracts\IntelligeN.App.Contracts.csproj" />
+    <ProjectReference Include="..\IntelligeN.Core.Abstractions\IntelligeN.Core.Abstractions.csproj" />
+    <ProjectReference Include="..\IntelligeN.Core\IntelligeN.Core.csproj" />
+    <ProjectReference Include="..\IntelligeN.Infrastructure\IntelligeN.Infrastructure.csproj" />
+    <ProjectReference Include="..\IntelligeN.LegacyImport\IntelligeN.LegacyImport.csproj" />
+    <ProjectReference Include="..\IntelligeN.PluginHost\IntelligeN.PluginHost.csproj" />
+    <ProjectReference Include="..\IntelligeN.SDK\IntelligeN.SDK.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" />
+    <PackageReference Include="Avalonia.Desktop" />
+    <PackageReference Include="Avalonia.Themes.Fluent" />
+  </ItemGroup>
+</Project>

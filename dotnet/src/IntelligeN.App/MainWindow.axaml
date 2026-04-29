@@ -1,0 +1,1406 @@
+<Window
+    x:Class="IntelligeN.App.MainWindow"
+    x:DataType="vm:MainWindowViewModel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:code="using:IntelligeN.LegacyImport.Configuration"
+    xmlns:controls="using:IntelligeN.LegacyImport.Configuration"
+    xmlns:legacy="using:IntelligeN.LegacyImport.Configuration"
+    xmlns:publish="using:IntelligeN.Core.Publishing"
+    xmlns:projects="using:IntelligeN.Infrastructure.Projects"
+    xmlns:workspace="using:IntelligeN.LegacyImport.Workspace"
+    xmlns:vm="using:IntelligeN.App.ViewModels"
+    Title="IntelligeN"
+    Width="1320"
+    Height="900"
+    MinWidth="1024"
+    MinHeight="720"
+    FontFamily="Bahnschrift, Segoe UI Variable, Noto Sans, DejaVu Sans"
+    Background="{DynamicResource AppBackgroundBrush}"
+    Foreground="{DynamicResource PrimaryTextBrush}">
+  <Window.Resources>
+    <LinearGradientBrush x:Key="AppBackgroundBrush" StartPoint="0%,0%" EndPoint="100%,100%">
+      <GradientStop Color="#0C1720" Offset="0" />
+      <GradientStop Color="#142636" Offset="0.52" />
+      <GradientStop Color="#213B46" Offset="1" />
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="HeroBrush" Color="#182A34" />
+    <SolidColorBrush x:Key="CardBrush" Color="#F4F1EA" />
+    <SolidColorBrush x:Key="CardSoftBrush" Color="#E7E0D2" />
+    <SolidColorBrush x:Key="CardWarmBrush" Color="#DCC8A7" />
+    <SolidColorBrush x:Key="CardInkBrush" Color="#233540" />
+    <SolidColorBrush x:Key="CardMutedBrush" Color="#304854" />
+    <SolidColorBrush x:Key="AccentBrush" Color="#D7813B" />
+    <SolidColorBrush x:Key="AccentDarkBrush" Color="#A45729" />
+    <SolidColorBrush x:Key="SuccessBrush" Color="#678563" />
+    <SolidColorBrush x:Key="BorderLightBrush" Color="#C9B996" />
+    <SolidColorBrush x:Key="BorderDarkBrush" Color="#526A72" />
+    <SolidColorBrush x:Key="PrimaryTextBrush" Color="#F8F4EB" />
+    <SolidColorBrush x:Key="DarkTextBrush" Color="#16222A" />
+    <SolidColorBrush x:Key="MutedTextBrush" Color="#5B6770" />
+    <SolidColorBrush x:Key="MutedLightTextBrush" Color="#C7D1D4" />
+    <SolidColorBrush x:Key="InputBrush" Color="#FFFCF4" />
+  </Window.Resources>
+
+  <Window.Styles>
+    <Style Selector="TabControl">
+      <Setter Property="Background" Value="Transparent" />
+    </Style>
+    <Style Selector="TabItem">
+      <Setter Property="FontSize" Value="15" />
+      <Setter Property="Padding" Value="18,9" />
+      <Setter Property="Background" Value="{DynamicResource CardMutedBrush}" />
+      <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}" />
+    </Style>
+    <Style Selector="TabItem:selected">
+      <Setter Property="Background" Value="{DynamicResource CardWarmBrush}" />
+      <Setter Property="Foreground" Value="{DynamicResource DarkTextBrush}" />
+    </Style>
+    <Style Selector="TabItem:pointerover">
+      <Setter Property="Background" Value="{DynamicResource CardSoftBrush}" />
+      <Setter Property="Foreground" Value="{DynamicResource DarkTextBrush}" />
+    </Style>
+    <Style Selector="Border.hero">
+      <Setter Property="Padding" Value="18" />
+      <Setter Property="CornerRadius" Value="24" />
+      <Setter Property="Background" Value="{DynamicResource HeroBrush}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource BorderDarkBrush}" />
+      <Setter Property="BorderThickness" Value="1" />
+    </Style>
+    <Style Selector="Border.card">
+      <Setter Property="Padding" Value="16" />
+      <Setter Property="CornerRadius" Value="20" />
+      <Setter Property="Background" Value="{DynamicResource CardBrush}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource BorderLightBrush}" />
+      <Setter Property="BorderThickness" Value="1" />
+    </Style>
+    <Style Selector="Border.soft">
+      <Setter Property="Background" Value="{DynamicResource CardSoftBrush}" />
+    </Style>
+    <Style Selector="Border.warm">
+      <Setter Property="Background" Value="{DynamicResource CardWarmBrush}" />
+    </Style>
+    <Style Selector="Border.dark">
+      <Setter Property="Background" Value="{DynamicResource CardInkBrush}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource BorderDarkBrush}" />
+    </Style>
+    <Style Selector="Border.muted">
+      <Setter Property="Background" Value="{DynamicResource CardMutedBrush}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource BorderDarkBrush}" />
+    </Style>
+    <Style Selector="Border.dropzone">
+      <Setter Property="Padding" Value="20" />
+      <Setter Property="CornerRadius" Value="24" />
+      <Setter Property="Background" Value="{DynamicResource CardWarmBrush}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource AccentDarkBrush}" />
+      <Setter Property="BorderThickness" Value="2" />
+    </Style>
+    <Style Selector="Border.pill">
+      <Setter Property="Padding" Value="10,5" />
+      <Setter Property="CornerRadius" Value="999" />
+      <Setter Property="Background" Value="{DynamicResource CardSoftBrush}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource BorderLightBrush}" />
+      <Setter Property="BorderThickness" Value="1" />
+    </Style>
+    <Style Selector="TextBlock">
+      <Setter Property="TextWrapping" Value="Wrap" />
+    </Style>
+    <Style Selector="TextBlock.eyebrow">
+      <Setter Property="FontSize" Value="12" />
+      <Setter Property="FontWeight" Value="SemiBold" />
+      <Setter Property="Foreground" Value="{DynamicResource AccentBrush}" />
+    </Style>
+    <Style Selector="TextBlock.title">
+      <Setter Property="FontSize" Value="30" />
+      <Setter Property="FontWeight" Value="SemiBold" />
+      <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}" />
+    </Style>
+    <Style Selector="TextBlock.section">
+      <Setter Property="FontSize" Value="19" />
+      <Setter Property="FontWeight" Value="SemiBold" />
+      <Setter Property="Foreground" Value="{DynamicResource DarkTextBrush}" />
+    </Style>
+    <Style Selector="TextBlock.sectionLight">
+      <Setter Property="FontSize" Value="19" />
+      <Setter Property="FontWeight" Value="SemiBold" />
+      <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}" />
+    </Style>
+    <Style Selector="TextBlock.muted">
+      <Setter Property="Foreground" Value="{DynamicResource MutedTextBrush}" />
+    </Style>
+    <Style Selector="TextBlock.lightMuted">
+      <Setter Property="Foreground" Value="{DynamicResource MutedLightTextBrush}" />
+    </Style>
+    <Style Selector="TextBlock.metric">
+      <Setter Property="FontSize" Value="26" />
+      <Setter Property="FontWeight" Value="SemiBold" />
+      <Setter Property="Foreground" Value="{DynamicResource DarkTextBrush}" />
+    </Style>
+    <Style Selector="Button">
+      <Setter Property="Padding" Value="12,8" />
+      <Setter Property="CornerRadius" Value="999" />
+      <Setter Property="Background" Value="{DynamicResource CardSoftBrush}" />
+      <Setter Property="Foreground" Value="{DynamicResource DarkTextBrush}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource BorderLightBrush}" />
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="Transitions">
+        <Transitions>
+          <DoubleTransition Property="Opacity" Duration="0:0:0.12" />
+        </Transitions>
+      </Setter>
+    </Style>
+    <Style Selector="Button:pointerover">
+      <Setter Property="Opacity" Value="0.9" />
+    </Style>
+    <Style Selector="Button.primary">
+      <Setter Property="Background" Value="{DynamicResource AccentBrush}" />
+      <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource AccentDarkBrush}" />
+      <Setter Property="FontWeight" Value="SemiBold" />
+    </Style>
+    <Style Selector="Button.darkButton">
+      <Setter Property="Background" Value="{DynamicResource CardMutedBrush}" />
+      <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource BorderDarkBrush}" />
+    </Style>
+    <Style Selector="TextBox">
+      <Setter Property="Background" Value="{DynamicResource InputBrush}" />
+      <Setter Property="Foreground" Value="{DynamicResource DarkTextBrush}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource BorderLightBrush}" />
+      <Setter Property="CornerRadius" Value="10" />
+      <Setter Property="Padding" Value="10,8" />
+    </Style>
+    <Style Selector="ComboBox">
+      <Setter Property="Background" Value="{DynamicResource InputBrush}" />
+      <Setter Property="Foreground" Value="{DynamicResource DarkTextBrush}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource BorderLightBrush}" />
+      <Setter Property="CornerRadius" Value="10" />
+    </Style>
+    <Style Selector="ListBox">
+      <Setter Property="Background" Value="Transparent" />
+      <Setter Property="BorderBrush" Value="{DynamicResource BorderLightBrush}" />
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="CornerRadius" Value="14" />
+      <Setter Property="Padding" Value="6" />
+    </Style>
+  </Window.Styles>
+
+  <Grid RowDefinitions="Auto,*" RowSpacing="14" Margin="16">
+    <Border Grid.Row="0" Classes="hero">
+      <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="*,Auto" RowSpacing="14" ColumnSpacing="18">
+        <StackPanel Spacing="5">
+          <TextBlock Classes="eyebrow" Text="INTELLIGEN MIGRATION WORKBENCH" />
+          <TextBlock Classes="title" Text="XML laden, ergaenzen, veroeffentlichen." />
+          <TextBlock Classes="lightMuted"
+                     Text="Der Hauptscreen folgt dem Produktziel aus der Migration: XML rein, fehlende Daten auffuellen, Vorlage pruefen, an aktive Zielprofile senden." />
+        </StackPanel>
+
+        <WrapPanel Grid.Column="1"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Top"
+                   ItemSpacing="10"
+                   LineSpacing="10">
+          <Button Classes="primary" Click="OpenXmlWorkspace_Click" Content="XML oeffnen" />
+          <Button Classes="darkButton" Click="LoadSampleXmlWorkspace_Click" Content="Beispiel laden" />
+          <Button Classes="darkButton"
+                  Click="SaveXmlWorkspace_Click"
+                  Content="XML speichern"
+                  IsEnabled="{Binding HasLoadedXmlWorkspaceDocument}" />
+          <Button Classes="primary"
+                  Click="PublishActiveTargets_Click"
+                  Content="Aktive Ziele senden"
+                  IsEnabled="{Binding HasLoadedXmlWorkspaceDocument}" />
+        </WrapPanel>
+
+        <WrapPanel Grid.Row="1"
+                   Grid.ColumnSpan="2"
+                   ItemSpacing="10"
+                   LineSpacing="10">
+          <Border Classes="pill">
+            <TextBlock Foreground="{DynamicResource DarkTextBrush}" Text="{Binding XmlWorkspaceDocumentState, StringFormat=XML: {0}}" />
+          </Border>
+          <Border Classes="pill">
+            <TextBlock Foreground="{DynamicResource DarkTextBrush}" Text="{Binding XmlWorkspaceMissingRequiredFieldCount, StringFormat=Offene Pflichtfelder: {0}}" />
+          </Border>
+          <Border Classes="pill">
+            <TextBlock Foreground="{DynamicResource DarkTextBrush}" Text="{Binding MatchingContentTemplateCount, StringFormat=Passende Vorlagen: {0}}" />
+          </Border>
+          <Border Classes="pill">
+            <TextBlock Foreground="{DynamicResource DarkTextBrush}" Text="{Binding MatchingActivePublishTargetProfileCount, StringFormat=Aktive Ziele: {0}}" />
+          </Border>
+          <Border Classes="pill">
+            <TextBlock Foreground="{DynamicResource DarkTextBrush}" Text="{Binding FailedPublishHistoryCount, StringFormat=Fehler in History: {0}}" />
+          </Border>
+        </WrapPanel>
+      </Grid>
+    </Border>
+
+    <TabControl Grid.Row="1">
+      <TabItem Header="Ablauf">
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+          <StackPanel Spacing="14" Margin="0,14,0,0">
+            <Border Classes="dropzone"
+                    DragDrop.AllowDrop="True"
+                    DragDrop.DragOver="XmlWorkspace_DragOver"
+                    DragDrop.Drop="XmlWorkspace_Drop">
+              <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="2*,*" RowSpacing="14" ColumnSpacing="18">
+                <StackPanel Spacing="8">
+                  <TextBlock Classes="eyebrow" Foreground="{DynamicResource AccentDarkBrush}" Text="SCHRITT 1" />
+                  <TextBlock Classes="section" Text="XML-Datei reinziehen oder oeffnen" />
+                  <TextBlock Foreground="{DynamicResource MutedTextBrush}"
+                             Text="Ziehe eine .xml oder .xml.2 Datei direkt auf diese Flaeche. Danach zeigt IntelligeN nur die Felder und Aktionen, die fuer den naechsten Schritt wichtig sind." />
+                  <WrapPanel ItemSpacing="10" LineSpacing="10">
+                    <Button Classes="primary" Click="OpenXmlWorkspace_Click" Content="XML oeffnen" />
+                    <Button Click="LoadSampleXmlWorkspace_Click" Content="Beispiel laden" />
+                    <Button Click="ReloadXmlWorkspace_Click"
+                            Content="Neu laden"
+                            IsEnabled="{Binding HasLoadedXmlWorkspaceDocument}" />
+                  </WrapPanel>
+                </StackPanel>
+
+                <Border Grid.Column="1" Classes="card soft">
+                  <StackPanel Spacing="8">
+                    <TextBlock Classes="section" Text="{Binding XmlWorkspaceFileName}" />
+                    <TextBlock Classes="muted" Text="{Binding XmlWorkspaceFilePath}" />
+                    <WrapPanel ItemSpacing="14" LineSpacing="8">
+                      <TextBlock Foreground="{DynamicResource DarkTextBrush}" Text="{Binding XmlWorkspaceTemplateType, StringFormat=Typ: {0}}" />
+                      <TextBlock Foreground="{DynamicResource DarkTextBrush}" Text="{Binding XmlWorkspaceControlCount, StringFormat=Felder: {0}}" />
+                      <TextBlock Foreground="{DynamicResource DarkTextBrush}" Text="{Binding XmlWorkspaceMirrorCount, StringFormat=Mirrors: {0}}" />
+                      <TextBlock Foreground="{DynamicResource DarkTextBrush}" Text="{Binding XmlWorkspaceDirectlinkCount, StringFormat=Direktlinks: {0}}" />
+                    </WrapPanel>
+                    <TextBlock Classes="muted" Text="{Binding XmlWorkspaceStatusMessage}" />
+                  </StackPanel>
+                </Border>
+              </Grid>
+            </Border>
+
+            <Expander Header="Downloadlinks und Crypter aus der XML">
+              <Border Classes="card soft" Margin="0,10,0,0">
+                <Grid RowDefinitions="Auto,*" RowSpacing="12">
+                  <StackPanel Spacing="5">
+                    <TextBlock Classes="section" Text="Links aus Mirrors" />
+                    <TextBlock Classes="muted" Text="{Binding XmlWorkspaceLinksSummary}" />
+                    <WrapPanel ItemSpacing="10" LineSpacing="8">
+                      <Border Classes="pill">
+                        <TextBlock Foreground="{DynamicResource DarkTextBrush}" Text="{Binding XmlWorkspaceMirrorCount, StringFormat=Mirrors: {0}}" />
+                      </Border>
+                      <Border Classes="pill">
+                        <TextBlock Foreground="{DynamicResource DarkTextBrush}" Text="{Binding XmlWorkspaceDirectlinkUrlCount, StringFormat=Directlink-URLs: {0}}" />
+                      </Border>
+                      <Border Classes="pill">
+                        <TextBlock Foreground="{DynamicResource DarkTextBrush}" Text="{Binding XmlWorkspaceCrypterCount, StringFormat=Crypter: {0}}" />
+                      </Border>
+                    </WrapPanel>
+                  </StackPanel>
+
+                  <Grid Grid.Row="1" ColumnDefinitions="*,*" ColumnSpacing="12">
+                    <StackPanel Spacing="6">
+                      <TextBlock FontWeight="SemiBold" Foreground="{DynamicResource DarkTextBrush}" Text="Crypter-Links" />
+                      <TextBox AcceptsReturn="True"
+                               IsReadOnly="True"
+                               MinHeight="160"
+                               Text="{Binding XmlWorkspaceCrypterLinksText}"
+                               TextWrapping="Wrap"
+                               PlaceholderText="Keine Crypter-Links in der XML." />
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Spacing="6">
+                      <TextBlock FontWeight="SemiBold" Foreground="{DynamicResource DarkTextBrush}" Text="Directlinks" />
+                      <TextBox AcceptsReturn="True"
+                               IsReadOnly="True"
+                               MinHeight="160"
+                               Text="{Binding XmlWorkspaceDirectlinksText}"
+                               TextWrapping="Wrap"
+                               PlaceholderText="Keine Directlinks in der XML." />
+                    </StackPanel>
+                  </Grid>
+                </Grid>
+              </Border>
+            </Expander>
+
+            <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" ColumnSpacing="14" RowSpacing="14">
+              <Border Classes="card">
+                <Grid RowDefinitions="Auto,Auto,Auto,*" RowSpacing="12">
+                  <StackPanel Spacing="5">
+                    <TextBlock Classes="eyebrow" Foreground="{DynamicResource AccentDarkBrush}" Text="SCHRITT 2" />
+                    <TextBlock Classes="section" Text="Fehlende Daten fertig machen" />
+                    <TextBlock Classes="muted" Text="{Binding XmlWorkspaceReadinessMessage}" />
+                  </StackPanel>
+
+                  <WrapPanel Grid.Row="1" ItemSpacing="10" LineSpacing="10">
+                    <Border Classes="pill">
+                      <TextBlock Foreground="{DynamicResource DarkTextBrush}" Text="{Binding XmlWorkspaceMissingRequiredFieldCount, StringFormat=Noch offen: {0}}" />
+                    </Border>
+                    <Button Classes="primary"
+                            Click="ApplyXmlWorkspaceHeuristics_Click"
+                            Content="Aus Releasename fuellen"
+                            IsEnabled="{Binding HasLoadedXmlWorkspaceDocument}" />
+                    <Button Click="RunRuntimeCrawlers_Click"
+                            Content="Crawler starten"
+                            IsEnabled="{Binding HasLoadedXmlWorkspaceDocument}" />
+                  </WrapPanel>
+
+                  <Grid Grid.Row="2" ColumnDefinitions="*,*" ColumnSpacing="12">
+                    <StackPanel Spacing="8">
+                      <TextBlock FontWeight="SemiBold" Foreground="{DynamicResource DarkTextBrush}" Text="Offene Pflichtfelder" />
+                      <ListBox MaxHeight="210"
+                               ItemsSource="{Binding MissingRequiredXmlWorkspaceControls}"
+                               SelectedItem="{Binding SelectedWorkspaceControl}">
+                        <ListBox.ItemTemplate>
+                          <DataTemplate x:DataType="vm:EditableWorkspaceControlViewModel">
+                            <Border Margin="0,0,0,8"
+                                    Padding="10"
+                                    CornerRadius="12"
+                                    Background="{DynamicResource InputBrush}"
+                                    BorderBrush="{DynamicResource BorderLightBrush}"
+                                    BorderThickness="1">
+                              <StackPanel Spacing="3">
+                                <TextBlock FontWeight="SemiBold" Foreground="{DynamicResource DarkTextBrush}" Text="{Binding DisplayTitle}" />
+                                <TextBlock Classes="muted" Text="{Binding ControlId, StringFormat=Id: {0}}" />
+                              </StackPanel>
+                            </Border>
+                          </DataTemplate>
+                        </ListBox.ItemTemplate>
+                      </ListBox>
+                    </StackPanel>
+
+                    <Border Grid.Column="1"
+                            Padding="12"
+                            CornerRadius="16"
+                            Background="{DynamicResource CardSoftBrush}"
+                            BorderBrush="{DynamicResource BorderLightBrush}"
+                            BorderThickness="1">
+                      <Grid RowDefinitions="Auto,Auto,*" RowSpacing="10">
+                        <StackPanel Spacing="4">
+                          <TextBlock FontWeight="SemiBold" Foreground="{DynamicResource DarkTextBrush}" Text="{Binding SelectedWorkspaceControlTitle}" />
+                          <TextBlock Classes="muted" Text="{Binding SelectedWorkspaceControlId, StringFormat=Control-ID: {0}}" />
+                        </StackPanel>
+                        <ItemsControl Grid.Row="1" ItemsSource="{Binding SelectedWorkspaceControlImageHosters}">
+                          <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                              <WrapPanel />
+                            </ItemsPanelTemplate>
+                          </ItemsControl.ItemsPanel>
+                          <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="workspace:LoadedXmlImageHoster">
+                              <Border Margin="0,0,8,8"
+                                      Padding="8,4"
+                                      CornerRadius="999"
+                                      Background="{DynamicResource SuccessBrush}">
+                                <TextBlock Foreground="{DynamicResource PrimaryTextBrush}" Text="{Binding Name}" />
+                              </Border>
+                            </DataTemplate>
+                          </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <TextBox Grid.Row="2"
+                                 AcceptsReturn="True"
+                                 MinHeight="150"
+                                 Text="{Binding SelectedWorkspaceControlValue, Mode=TwoWay}"
+                                 TextWrapping="Wrap"
+                                 PlaceholderText="Wert fuer das ausgewaehlte Feld" />
+                      </Grid>
+                    </Border>
+                  </Grid>
+
+                  <Expander Grid.Row="3" Header="Alle XML-Felder anzeigen">
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="12" Margin="0,10,0,0">
+                      <ListBox MaxHeight="300"
+                               ItemsSource="{Binding XmlWorkspaceControls}"
+                               SelectedItem="{Binding SelectedWorkspaceControl}">
+                        <ListBox.ItemTemplate>
+                          <DataTemplate x:DataType="vm:EditableWorkspaceControlViewModel">
+                            <Border Margin="0,0,0,8"
+                                    Padding="10"
+                                    CornerRadius="12"
+                                    Background="{DynamicResource InputBrush}"
+                                    BorderBrush="{DynamicResource BorderLightBrush}"
+                                    BorderThickness="1">
+                              <StackPanel Spacing="4">
+                                <TextBlock FontWeight="SemiBold" Foreground="{DynamicResource DarkTextBrush}" Text="{Binding DisplayTitle}" />
+                                <TextBlock Classes="muted" Text="{Binding ControlId, StringFormat=Id: {0}}" />
+                                <TextBlock Foreground="{DynamicResource DarkTextBrush}" Text="{Binding ValuePreview}" />
+                              </StackPanel>
+                            </Border>
+                          </DataTemplate>
+                        </ListBox.ItemTemplate>
+                      </ListBox>
+
+                      <StackPanel Grid.Column="1" Spacing="10">
+                        <TextBlock FontWeight="SemiBold" Foreground="{DynamicResource DarkTextBrush}" Text="Ausgewaehltes Feld" />
+                        <TextBox AcceptsReturn="True"
+                                 MinHeight="240"
+                                 Text="{Binding SelectedWorkspaceControlValue, Mode=TwoWay}"
+                                 TextWrapping="Wrap" />
+                      </StackPanel>
+                    </Grid>
+                  </Expander>
+                </Grid>
+              </Border>
+
+              <Border Grid.Column="1" Classes="card dark">
+                <Grid RowDefinitions="Auto,Auto,Auto,*" RowSpacing="12">
+                  <StackPanel Spacing="5">
+                    <TextBlock Classes="eyebrow" Text="SCHRITT 3" />
+                    <TextBlock Classes="sectionLight" Text="Crawler-Vorschlaege uebernehmen" />
+                    <TextBlock Classes="lightMuted" Text="{Binding XmlWorkspaceCrawlerPreparationMessage}" />
+                  </StackPanel>
+
+                  <WrapPanel Grid.Row="1" ItemSpacing="10" LineSpacing="10">
+                    <Border Classes="pill">
+                      <TextBlock Foreground="{DynamicResource DarkTextBrush}" Text="{Binding XmlWorkspaceCrawlerTarget, StringFormat=Zielfeld: {0}}" />
+                    </Border>
+                    <Border Classes="pill">
+                      <TextBlock Foreground="{DynamicResource DarkTextBrush}" Text="{Binding MatchingRuntimeCrawlerPluginCount, StringFormat=Passende Crawler: {0}}" />
+                    </Border>
+                    <Border Classes="pill">
+                      <TextBlock Foreground="{DynamicResource DarkTextBrush}" Text="{Binding LastCrawlerSuggestionCount, StringFormat=Vorschlaege: {0}}" />
+                    </Border>
+                  </WrapPanel>
+
+                  <StackPanel Grid.Row="2" Spacing="8">
+                    <TextBlock Classes="lightMuted" Text="{Binding XmlWorkspaceCrawlerTargetControlId, StringFormat=Control: {0}}" />
+                    <ItemsControl ItemsSource="{Binding LastCrawlerSuggestions}">
+                      <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="vm:CrawlerSuggestionSummary">
+                          <Border Margin="0,0,0,8"
+                                  Padding="10"
+                                  CornerRadius="12"
+                                  Background="{DynamicResource CardMutedBrush}"
+                                  BorderBrush="{DynamicResource BorderDarkBrush}"
+                                  BorderThickness="1">
+                            <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto" ColumnSpacing="12" RowSpacing="4">
+                              <TextBlock FontWeight="SemiBold" Foreground="{DynamicResource PrimaryTextBrush}" Text="{Binding ControlId}" />
+                              <TextBlock Grid.Column="1" Foreground="{DynamicResource PrimaryTextBrush}" Text="{Binding Applied, StringFormat=Uebernommen: {0}}" />
+                              <TextBlock Grid.Row="1" Classes="lightMuted" Text="{Binding Reason}" />
+                              <TextBlock Grid.Row="1" Grid.Column="1" Classes="lightMuted" Text="{Binding Confidence, StringFormat={}{0:F2}}" />
+                            </Grid>
+                          </Border>
+                        </DataTemplate>
+                      </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                  </StackPanel>
+
+                  <Expander Grid.Row="3" Header="Geladene passende Crawler">
+                    <ItemsControl Margin="0,10,0,0" ItemsSource="{Binding MatchingRuntimeCrawlerPlugins}">
+                      <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="vm:RuntimeCrawlerMatchSummary">
+                          <Border Margin="0,0,0,8"
+                                  Padding="10"
+                                  CornerRadius="12"
+                                  Background="{DynamicResource CardMutedBrush}"
+                                  BorderBrush="{DynamicResource BorderDarkBrush}"
+                                  BorderThickness="1">
+                            <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto,Auto" ColumnSpacing="12" RowSpacing="4">
+                              <TextBlock FontWeight="SemiBold" Foreground="{DynamicResource PrimaryTextBrush}" Text="{Binding DisplayName}" />
+                              <TextBlock Grid.Column="1" Classes="lightMuted" Text="{Binding Version}" />
+                              <TextBlock Grid.Row="1" Classes="lightMuted" Text="{Binding SupportedTemplates, StringFormat=Templates: {0}}" />
+                              <TextBlock Grid.Row="1" Grid.Column="1" Classes="lightMuted" Text="{Binding SupportedControls, StringFormat=Felder: {0}}" />
+                              <TextBlock Grid.Row="2" Grid.ColumnSpan="2" Foreground="{DynamicResource PrimaryTextBrush}" Text="{Binding Notes}" />
+                            </Grid>
+                          </Border>
+                        </DataTemplate>
+                      </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                  </Expander>
+                </Grid>
+              </Border>
+
+              <Border Grid.Row="1" Classes="card warm">
+                <Grid RowDefinitions="Auto,Auto,*" RowSpacing="12">
+                  <StackPanel Spacing="5">
+                    <TextBlock Classes="eyebrow" Foreground="{DynamicResource AccentDarkBrush}" Text="SCHRITT 4A" />
+                    <TextBlock Classes="section" Text="Vorlage previewen" />
+                    <TextBlock Classes="muted" Text="{Binding SelectedContentTemplatePreviewStatus}" />
+                  </StackPanel>
+
+                  <Grid Grid.Row="1" ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                    <ComboBox ItemsSource="{Binding MatchingContentTemplates}"
+                              SelectedItem="{Binding SelectedContentTemplate}">
+                      <ComboBox.ItemTemplate>
+                        <DataTemplate x:DataType="vm:EditableContentTemplateViewModel">
+                          <TextBlock Text="{Binding DisplayName}" />
+                        </DataTemplate>
+                      </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <Button Grid.Column="1" Click="PreparePublishDraft_Click" Content="In Publish-Test uebernehmen" />
+                  </Grid>
+
+                  <Grid Grid.Row="2" RowDefinitions="Auto,*" RowSpacing="10">
+                    <Border Padding="12"
+                            CornerRadius="14"
+                            Background="{DynamicResource InputBrush}"
+                            BorderBrush="{DynamicResource BorderLightBrush}"
+                            BorderThickness="1">
+                      <StackPanel Spacing="5">
+                        <TextBlock FontWeight="SemiBold" Foreground="{DynamicResource DarkTextBrush}" Text="{Binding SelectedContentTemplatePreviewSubject}" />
+                        <TextBlock Classes="muted" Text="{Binding SelectedContentTemplatePreviewTags, StringFormat=Tags: {0}}" />
+                      </StackPanel>
+                    </Border>
+                    <Border Grid.Row="1"
+                            Padding="12"
+                            CornerRadius="14"
+                            Background="{DynamicResource InputBrush}"
+                            BorderBrush="{DynamicResource BorderLightBrush}"
+                            BorderThickness="1">
+                      <ScrollViewer MaxHeight="260">
+                        <TextBlock Foreground="{DynamicResource DarkTextBrush}" Text="{Binding SelectedContentTemplatePreviewBody}" />
+                      </ScrollViewer>
+                    </Border>
+                  </Grid>
+                </Grid>
+              </Border>
+
+              <Border Grid.Row="1" Grid.Column="1" Classes="card">
+                <Grid RowDefinitions="Auto,Auto,Auto,*" RowSpacing="12">
+                  <StackPanel Spacing="5">
+                    <TextBlock Classes="eyebrow" Foreground="{DynamicResource AccentDarkBrush}" Text="SCHRITT 4B" />
+                    <TextBlock Classes="section" Text="An Zielprofile senden" />
+                    <TextBlock Classes="muted" Text="{Binding PublishBatchPreparationMessage}" />
+                  </StackPanel>
+
+                  <Grid Grid.Row="1" ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                    <ListBox MaxHeight="150"
+                             ItemsSource="{Binding MatchingPublishTargetProfiles}"
+                             SelectedItem="{Binding SelectedPublishTargetProfile}">
+                      <ListBox.ItemTemplate>
+                        <DataTemplate x:DataType="vm:EditablePublishTargetProfileViewModel">
+                          <Border Margin="0,0,0,8"
+                                  Padding="10"
+                                  CornerRadius="12"
+                                  Background="{DynamicResource InputBrush}"
+                                  BorderBrush="{DynamicResource BorderLightBrush}"
+                                  BorderThickness="1">
+                            <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto" ColumnSpacing="12" RowSpacing="3">
+                              <TextBlock FontWeight="SemiBold" Foreground="{DynamicResource DarkTextBrush}" Text="{Binding DisplayName}" />
+                              <TextBlock Grid.Column="1" Classes="muted" Text="{Binding IsActive, StringFormat=Aktiv: {0}}" />
+                              <TextBlock Grid.Row="1" Classes="muted" Text="{Binding PluginId}" />
+                              <TextBlock Grid.Row="1" Grid.Column="1" Classes="muted" Text="{Binding TemplateType}" />
+                            </Grid>
+                          </Border>
+                        </DataTemplate>
+                      </ListBox.ItemTemplate>
+                    </ListBox>
+                    <StackPanel Grid.Column="1" Spacing="10" Width="190">
+                      <TextBlock FontWeight="SemiBold" Foreground="{DynamicResource DarkTextBrush}" Text="{Binding SelectedPublishTargetProfileName}" />
+                      <TextBlock Classes="muted" Text="{Binding SelectedPublishTargetProfileTemplateName, StringFormat=Vorlage: {0}}" />
+                      <Button Classes="primary"
+                              Click="PublishActiveTargets_Click"
+                              Content="Aktive Ziele senden"
+                              IsEnabled="{Binding HasLoadedXmlWorkspaceDocument}" />
+                    </StackPanel>
+                  </Grid>
+
+                  <Expander Grid.Row="2" Header="Manueller Publish-Test">
+                    <Grid Margin="0,10,0,0" ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto" ColumnSpacing="12" RowSpacing="10">
+                      <StackPanel Spacing="6">
+                        <TextBlock Classes="muted" Text="Runtime-Ziel" />
+                        <ComboBox ItemsSource="{Binding MatchingRuntimeCmsPublisherPlugins}"
+                                  SelectedItem="{Binding SelectedPublishTarget, Mode=TwoWay}">
+                          <ComboBox.ItemTemplate>
+                            <DataTemplate x:DataType="vm:RuntimeCmsPublisherMatchSummary">
+                              <TextBlock Text="{Binding DisplayName}" />
+                            </DataTemplate>
+                          </ComboBox.ItemTemplate>
+                        </ComboBox>
+                      </StackPanel>
+                      <StackPanel Grid.Column="1" Spacing="6">
+                        <TextBlock Classes="muted" Text="Website" />
+                        <TextBox Text="{Binding PublishWebsite, Mode=TwoWay}" PlaceholderText="https://example.com/" />
+                      </StackPanel>
+                      <StackPanel Grid.Row="1" Spacing="6">
+                        <TextBlock Classes="muted" Text="Benutzername" />
+                        <TextBox Text="{Binding PublishAccountName, Mode=TwoWay}" />
+                      </StackPanel>
+                      <StackPanel Grid.Row="1" Grid.Column="1" Spacing="6">
+                        <TextBlock Classes="muted" Text="Passwort" />
+                        <TextBox Text="{Binding PublishAccountPassword, Mode=TwoWay}" PasswordChar="*" />
+                      </StackPanel>
+                      <StackPanel Grid.Row="2" Spacing="6">
+                        <TextBlock Classes="muted" Text="{Binding PublishScopeLabel}" />
+                        <TextBox Text="{Binding PublishForumId, Mode=TwoWay}" PlaceholderText="{Binding PublishScopePlaceholder}" />
+                      </StackPanel>
+                      <StackPanel Grid.Row="2" Grid.Column="1" Spacing="6">
+                        <TextBlock Classes="muted" Text="Betreff" />
+                        <TextBox Text="{Binding PublishSubject, Mode=TwoWay}" />
+                      </StackPanel>
+                    </Grid>
+                  </Expander>
+
+                  <StackPanel Grid.Row="3" Spacing="10">
+                    <TextBlock Classes="muted" Text="{Binding XmlWorkspacePublishPreparationMessage}" />
+                    <TextBox AcceptsReturn="True"
+                             MinHeight="120"
+                             Text="{Binding PublishMessage, Mode=TwoWay}"
+                             TextWrapping="Wrap"
+                             PlaceholderText="Nachricht fuer manuellen Publish-Test" />
+                    <WrapPanel ItemSpacing="10" LineSpacing="10">
+                      <Button Click="RunRuntimePublishers_Click"
+                              Content="Manuellen Publish-Test senden"
+                              IsEnabled="{Binding HasLoadedXmlWorkspaceDocument}" />
+                      <Button Click="SaveXmlWorkspace_Click"
+                              Content="XML speichern"
+                              IsEnabled="{Binding HasLoadedXmlWorkspaceDocument}" />
+                    </WrapPanel>
+                  </StackPanel>
+                </Grid>
+              </Border>
+            </Grid>
+
+            <Border Classes="card dark">
+              <Grid ColumnDefinitions="*,Auto" ColumnSpacing="14">
+                <StackPanel Spacing="5">
+                  <TextBlock Classes="sectionLight" Text="Letzte Publish-Versuche" />
+                  <TextBlock Classes="lightMuted" Text="{Binding PublishHistoryStatusMessage}" />
+                </StackPanel>
+                <WrapPanel Grid.Column="1" ItemSpacing="10" LineSpacing="10">
+                  <Border Classes="pill">
+                    <TextBlock Foreground="{DynamicResource DarkTextBrush}" Text="{Binding PublishHistoryCount, StringFormat=Eintraege: {0}}" />
+                  </Border>
+                  <Border Classes="pill">
+                    <TextBlock Foreground="{DynamicResource DarkTextBrush}" Text="{Binding SuccessfulPublishHistoryCount, StringFormat=Erfolgreich: {0}}" />
+                  </Border>
+                  <Border Classes="pill">
+                    <TextBlock Foreground="{DynamicResource DarkTextBrush}" Text="{Binding FailedPublishHistoryCount, StringFormat=Fehler: {0}}" />
+                  </Border>
+                </WrapPanel>
+              </Grid>
+            </Border>
+          </StackPanel>
+        </ScrollViewer>
+      </TabItem>
+
+      <TabItem Header="Vorlagen">
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+          <Grid ColumnDefinitions="340,*" ColumnSpacing="14" Margin="0,14,0,0">
+            <Border Classes="card soft">
+              <Grid RowDefinitions="Auto,*,Auto" RowSpacing="12">
+                <StackPanel Spacing="6">
+                  <TextBlock Classes="section" Text="Vorlagen" />
+                  <TextBlock Classes="muted" Text="Eine Vorlage nimmt XML-Felder auf und erzeugt daraus Betreff, Text und Tags." />
+                  <WrapPanel ItemSpacing="10" LineSpacing="8">
+                    <Border Classes="pill">
+                      <TextBlock Foreground="{DynamicResource DarkTextBrush}" Text="{Binding ContentTemplateCount, StringFormat=Gesamt: {0}}" />
+                    </Border>
+                    <Border Classes="pill">
+                      <TextBlock Foreground="{DynamicResource DarkTextBrush}" Text="{Binding MatchingContentTemplateCount, StringFormat=Passend: {0}}" />
+                    </Border>
+                  </WrapPanel>
+                </StackPanel>
+
+                <ListBox Grid.Row="1"
+                         ItemsSource="{Binding ContentTemplates}"
+                         SelectedItem="{Binding SelectedContentTemplate}">
+                  <ListBox.ItemTemplate>
+                    <DataTemplate x:DataType="vm:EditableContentTemplateViewModel">
+                      <Border Margin="0,0,0,8"
+                              Padding="10"
+                              CornerRadius="12"
+                              Background="{DynamicResource InputBrush}"
+                              BorderBrush="{DynamicResource BorderLightBrush}"
+                              BorderThickness="1">
+                        <StackPanel Spacing="3">
+                          <TextBlock FontWeight="SemiBold" Foreground="{DynamicResource DarkTextBrush}" Text="{Binding DisplayName}" />
+                          <TextBlock Classes="muted" Text="{Binding Category, StringFormat=Kategorie: {0}}" />
+                        </StackPanel>
+                      </Border>
+                    </DataTemplate>
+                  </ListBox.ItemTemplate>
+                </ListBox>
+
+                <WrapPanel Grid.Row="2" ItemSpacing="10" LineSpacing="10">
+                  <Button Classes="primary" Click="AddContentTemplate_Click" Content="Neue Vorlage" />
+                  <Button Click="RemoveContentTemplate_Click" Content="Entfernen" />
+                  <Button Click="SaveContentTemplates_Click" Content="Speichern" />
+                </WrapPanel>
+              </Grid>
+            </Border>
+
+            <Grid Grid.Column="1" RowDefinitions="Auto,Auto,*" RowSpacing="14">
+              <Border Classes="card">
+                <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto" ColumnSpacing="12" RowSpacing="10">
+                  <StackPanel Spacing="6">
+                    <TextBlock Classes="muted" Text="Name" />
+                    <TextBox Text="{Binding SelectedContentTemplate.Name, Mode=TwoWay}" />
+                  </StackPanel>
+                  <StackPanel Grid.Column="1" Spacing="6">
+                    <TextBlock Classes="muted" Text="Template-Typ" />
+                    <TextBox Text="{Binding SelectedContentTemplate.TemplateType, Mode=TwoWay}" />
+                  </StackPanel>
+                  <StackPanel Grid.Row="1" Spacing="6">
+                    <TextBlock Classes="muted" Text="Kategorie" />
+                    <TextBox Text="{Binding SelectedContentTemplate.Category, Mode=TwoWay}" />
+                  </StackPanel>
+                  <StackPanel Grid.Row="1" Grid.Column="1" Spacing="6">
+                    <TextBlock Classes="muted" Text="Beschreibung" />
+                    <TextBox Text="{Binding SelectedContentTemplate.Description, Mode=TwoWay}" />
+                  </StackPanel>
+                  <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Spacing="6">
+                    <TextBlock Classes="muted" Text="Subject-Template" />
+                    <TextBox Text="{Binding SelectedContentTemplate.SubjectTemplate, Mode=TwoWay}" />
+                  </StackPanel>
+                </Grid>
+              </Border>
+
+              <Grid Grid.Row="1" ColumnDefinitions="*,320" ColumnSpacing="14">
+                <Border Classes="card warm">
+                  <StackPanel Spacing="8">
+                    <TextBlock Classes="section" Text="Body-Template" />
+                    <TextBox AcceptsReturn="True"
+                             MinHeight="240"
+                             Text="{Binding SelectedContentTemplate.BodyTemplate, Mode=TwoWay}"
+                             TextWrapping="Wrap" />
+                    <TextBlock Classes="muted" Text="Tag-Template" />
+                    <TextBox Text="{Binding SelectedContentTemplate.TagTemplate, Mode=TwoWay}" />
+                  </StackPanel>
+                </Border>
+
+                <Border Grid.Column="1" Classes="card soft">
+                  <Grid RowDefinitions="Auto,*" RowSpacing="10">
+                    <StackPanel Spacing="5">
+                      <TextBlock Classes="section" Text="Platzhalter" />
+                      <TextBlock Classes="muted" Text="Syntax: {{Token}}" />
+                    </StackPanel>
+                    <ScrollViewer Grid.Row="1" MaxHeight="330">
+                      <ItemsControl ItemsSource="{Binding TemplateTokenPreviewEntries}">
+                        <ItemsControl.ItemTemplate>
+                          <DataTemplate x:DataType="vm:TemplateTokenPreviewEntry">
+                            <Border Margin="0,0,0,8"
+                                    Padding="9"
+                                    CornerRadius="12"
+                                    Background="{DynamicResource InputBrush}"
+                                    BorderBrush="{DynamicResource BorderLightBrush}"
+                                    BorderThickness="1">
+                              <StackPanel Spacing="3">
+                                <TextBlock FontWeight="SemiBold" Foreground="{DynamicResource DarkTextBrush}" Text="{Binding Token}" />
+                                <TextBlock Classes="muted" Text="{Binding Value}" />
+                              </StackPanel>
+                            </Border>
+                          </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                      </ItemsControl>
+                    </ScrollViewer>
+                  </Grid>
+                </Border>
+              </Grid>
+
+              <Border Grid.Row="2" Classes="card dark">
+                <Grid RowDefinitions="Auto,Auto,*" RowSpacing="10">
+                  <StackPanel Spacing="4">
+                    <TextBlock Classes="sectionLight" Text="Live-Preview" />
+                    <TextBlock Classes="lightMuted" Text="{Binding SelectedContentTemplatePreviewStatus}" />
+                  </StackPanel>
+                  <Border Grid.Row="1"
+                          Padding="12"
+                          CornerRadius="14"
+                          Background="{DynamicResource CardMutedBrush}"
+                          BorderBrush="{DynamicResource BorderDarkBrush}"
+                          BorderThickness="1">
+                    <StackPanel Spacing="5">
+                      <TextBlock FontWeight="SemiBold" Foreground="{DynamicResource PrimaryTextBrush}" Text="{Binding SelectedContentTemplatePreviewSubject}" />
+                      <TextBlock Classes="lightMuted" Text="{Binding SelectedContentTemplatePreviewTags, StringFormat=Tags: {0}}" />
+                    </StackPanel>
+                  </Border>
+                  <ScrollViewer Grid.Row="2" MaxHeight="260">
+                    <TextBlock Foreground="{DynamicResource PrimaryTextBrush}" Text="{Binding SelectedContentTemplatePreviewBody}" />
+                  </ScrollViewer>
+                </Grid>
+              </Border>
+            </Grid>
+          </Grid>
+        </ScrollViewer>
+      </TabItem>
+
+      <TabItem Header="Ziele">
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+          <Grid ColumnDefinitions="360,*" ColumnSpacing="14" Margin="0,14,0,0">
+            <Border Classes="card soft">
+              <Grid RowDefinitions="Auto,*,Auto" RowSpacing="12">
+                <StackPanel Spacing="6">
+                  <TextBlock Classes="section" Text="Zielprofile" />
+                  <TextBlock Classes="muted" Text="{Binding PublishBatchPreparationMessage}" />
+                  <WrapPanel ItemSpacing="10" LineSpacing="8">
+                    <Border Classes="pill">
+                      <TextBlock Foreground="{DynamicResource DarkTextBrush}" Text="{Binding PublishTargetProfileCount, StringFormat=Gesamt: {0}}" />
+                    </Border>
+                    <Border Classes="pill">
+                      <TextBlock Foreground="{DynamicResource DarkTextBrush}" Text="{Binding ActivePublishTargetProfileCount, StringFormat=Aktiv: {0}}" />
+                    </Border>
+                  </WrapPanel>
+                </StackPanel>
+
+                <ListBox Grid.Row="1"
+                         ItemsSource="{Binding PublishTargetProfiles}"
+                         SelectedItem="{Binding SelectedPublishTargetProfile}">
+                  <ListBox.ItemTemplate>
+                    <DataTemplate x:DataType="vm:EditablePublishTargetProfileViewModel">
+                      <Border Margin="0,0,0,8"
+                              Padding="10"
+                              CornerRadius="12"
+                              Background="{DynamicResource InputBrush}"
+                              BorderBrush="{DynamicResource BorderLightBrush}"
+                              BorderThickness="1">
+                        <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto" ColumnSpacing="12" RowSpacing="3">
+                          <TextBlock FontWeight="SemiBold" Foreground="{DynamicResource DarkTextBrush}" Text="{Binding DisplayName}" />
+                          <TextBlock Grid.Column="1" Classes="muted" Text="{Binding IsActive, StringFormat=Aktiv: {0}}" />
+                          <TextBlock Grid.Row="1" Classes="muted" Text="{Binding PluginId}" />
+                          <TextBlock Grid.Row="1" Grid.Column="1" Classes="muted" Text="{Binding TemplateType}" />
+                        </Grid>
+                      </Border>
+                    </DataTemplate>
+                  </ListBox.ItemTemplate>
+                </ListBox>
+
+                <WrapPanel Grid.Row="2" ItemSpacing="10" LineSpacing="10">
+                  <Button Classes="primary" Click="AddPublishTargetProfile_Click" Content="Neues Ziel" />
+                  <Button Click="RemovePublishTargetProfile_Click" Content="Entfernen" />
+                  <Button Click="SavePublishTargetProfiles_Click" Content="Speichern" />
+                </WrapPanel>
+              </Grid>
+            </Border>
+
+            <Grid Grid.Column="1" RowDefinitions="Auto,Auto,Auto" RowSpacing="14">
+              <Border Classes="card">
+                <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto" ColumnSpacing="12" RowSpacing="10">
+                  <StackPanel Spacing="6">
+                    <TextBlock Classes="muted" Text="Name" />
+                    <TextBox Text="{Binding SelectedPublishTargetProfile.Name, Mode=TwoWay}" />
+                  </StackPanel>
+                  <StackPanel Grid.Column="1" Spacing="6">
+                    <TextBlock Classes="muted" Text="Publisher-Plugin" />
+                    <ComboBox ItemsSource="{Binding AvailablePublishTargetProfilePlugins}"
+                              SelectedItem="{Binding SelectedPublishTargetProfilePlugin, Mode=TwoWay}">
+                      <ComboBox.ItemTemplate>
+                        <DataTemplate x:DataType="vm:DiscoveredPluginSummary">
+                          <TextBlock Text="{Binding DisplayName}" />
+                        </DataTemplate>
+                      </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <TextBlock Classes="muted"
+                               Text="{Binding SelectedPublishTargetProfile.PluginId, StringFormat=Plugin-ID: {0}}" />
+                  </StackPanel>
+                  <StackPanel Grid.Row="1" Spacing="6">
+                    <TextBlock Classes="muted" Text="Template-Typ" />
+                    <TextBox Text="{Binding SelectedPublishTargetProfile.TemplateType, Mode=TwoWay}" />
+                  </StackPanel>
+                  <StackPanel Grid.Row="1" Grid.Column="1" Spacing="6">
+                    <TextBlock Classes="muted" Text="Vorlagen-ID" />
+                    <TextBox Text="{Binding SelectedPublishTargetProfile.ContentTemplateId, Mode=TwoWay}" />
+                  </StackPanel>
+                  <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Spacing="6">
+                    <TextBlock Classes="muted" Text="Website" />
+                    <TextBox Text="{Binding SelectedPublishTargetProfile.Website, Mode=TwoWay}" />
+                  </StackPanel>
+                  <StackPanel Grid.Row="3" Spacing="6">
+                    <TextBlock Classes="muted" Text="Benutzername" />
+                    <TextBox Text="{Binding SelectedPublishTargetProfile.AccountName, Mode=TwoWay}" />
+                  </StackPanel>
+                  <StackPanel Grid.Row="3" Grid.Column="1" Spacing="6">
+                    <TextBlock Classes="muted" Text="Passwort" />
+                    <TextBox Text="{Binding SelectedPublishTargetProfile.AccountPassword, Mode=TwoWay}" PasswordChar="*" />
+                  </StackPanel>
+                  <Grid Grid.Row="4" Grid.ColumnSpan="2" ColumnDefinitions="Auto,*" ColumnSpacing="12">
+                    <CheckBox IsChecked="{Binding SelectedPublishTargetProfile.IsActive, Mode=TwoWay}"
+                              Content="Aktiv" />
+                    <TextBlock Grid.Column="1" Classes="muted" Text="{Binding SelectedPublishTargetProfileTemplateName, StringFormat=Vorlage: {0}}" />
+                  </Grid>
+                </Grid>
+              </Border>
+
+              <Border Grid.Row="1" Classes="card warm">
+                <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto" ColumnSpacing="12" RowSpacing="10">
+                  <StackPanel Spacing="6">
+                    <TextBlock Classes="muted" Text="Scope / Kategorien / Forum" />
+                    <TextBox Text="{Binding SelectedPublishTargetProfile.ScopeValue, Mode=TwoWay}" />
+                  </StackPanel>
+                  <StackPanel Grid.Column="1" Spacing="6">
+                    <TextBlock Classes="muted" Text="Thread-ID" />
+                    <TextBox Text="{Binding SelectedPublishTargetProfile.ThreadId, Mode=TwoWay}" />
+                  </StackPanel>
+                  <StackPanel Grid.Row="1" Spacing="6">
+                    <TextBlock Classes="muted" Text="Prefix" />
+                    <TextBox Text="{Binding SelectedPublishTargetProfile.Prefix, Mode=TwoWay}" />
+                  </StackPanel>
+                  <StackPanel Grid.Row="1" Grid.Column="1" Spacing="6">
+                    <TextBlock Classes="muted" Text="Icon" />
+                    <TextBox Text="{Binding SelectedPublishTargetProfile.Icon, Mode=TwoWay}" />
+                  </StackPanel>
+                  <CheckBox Grid.Row="2"
+                            Grid.ColumnSpan="2"
+                            IsChecked="{Binding SelectedPublishTargetProfile.PostReply, Mode=TwoWay}"
+                            Content="Als Reply in bestehendem Thread posten" />
+                </Grid>
+              </Border>
+
+              <Border Grid.Row="2" Classes="card dark">
+                <Grid RowDefinitions="Auto,Auto" RowSpacing="12">
+                  <TextBlock Classes="lightMuted" Text="{Binding PublishTargetsStatusMessage}" />
+                  <WrapPanel Grid.Row="1" ItemSpacing="10" LineSpacing="10">
+                    <Button Classes="primary"
+                            Click="PublishActiveTargets_Click"
+                            Content="Aktive Ziele senden"
+                            IsEnabled="{Binding HasLoadedXmlWorkspaceDocument}" />
+                    <Button Classes="darkButton" Click="PreparePublishDraft_Click" Content="Preview in manuellen Test uebernehmen" />
+                  </WrapPanel>
+                </Grid>
+              </Border>
+            </Grid>
+          </Grid>
+        </ScrollViewer>
+      </TabItem>
+
+      <TabItem Header="History">
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+          <Grid ColumnDefinitions="430,*" ColumnSpacing="14" Margin="0,14,0,0">
+            <Border Classes="card soft">
+              <Grid RowDefinitions="Auto,*" RowSpacing="12">
+                <StackPanel Spacing="6">
+                  <TextBlock Classes="section" Text="Publish-History" />
+                  <TextBlock Classes="muted" Text="Jeder Publish-Versuch bleibt nachvollziehbar und kann erneut gesendet werden." />
+                  <WrapPanel ItemSpacing="10" LineSpacing="8">
+                    <Border Classes="pill">
+                      <TextBlock Foreground="{DynamicResource DarkTextBrush}" Text="{Binding PublishHistoryCount, StringFormat=Eintraege: {0}}" />
+                    </Border>
+                    <Border Classes="pill">
+                      <TextBlock Foreground="{DynamicResource DarkTextBrush}" Text="{Binding SuccessfulPublishHistoryCount, StringFormat=Erfolgreich: {0}}" />
+                    </Border>
+                    <Border Classes="pill">
+                      <TextBlock Foreground="{DynamicResource DarkTextBrush}" Text="{Binding FailedPublishHistoryCount, StringFormat=Fehler: {0}}" />
+                    </Border>
+                  </WrapPanel>
+                </StackPanel>
+
+                <ListBox Grid.Row="1"
+                         ItemsSource="{Binding PublishHistory}"
+                         SelectedItem="{Binding SelectedPublishHistoryEntry}">
+                  <ListBox.ItemTemplate>
+                    <DataTemplate x:DataType="publish:PublishHistoryEntry">
+                      <Border Margin="0,0,0,8"
+                              Padding="10"
+                              CornerRadius="12"
+                              Background="{DynamicResource InputBrush}"
+                              BorderBrush="{DynamicResource BorderLightBrush}"
+                              BorderThickness="1">
+                        <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto,Auto" ColumnSpacing="12" RowSpacing="3">
+                          <TextBlock FontWeight="SemiBold" Foreground="{DynamicResource DarkTextBrush}" Text="{Binding DisplayName}" />
+                          <TextBlock Grid.Column="1" Classes="muted" Text="{Binding Status}" />
+                          <TextBlock Grid.Row="1" Classes="muted" Text="{Binding CreatedLabel}" />
+                          <TextBlock Grid.Row="1" Grid.Column="1" Classes="muted" Text="{Binding TemplateType}" />
+                          <TextBlock Grid.Row="2" Grid.ColumnSpan="2" Foreground="{DynamicResource DarkTextBrush}" Text="{Binding ResultSummary}" />
+                        </Grid>
+                      </Border>
+                    </DataTemplate>
+                  </ListBox.ItemTemplate>
+                </ListBox>
+              </Grid>
+            </Border>
+
+            <Grid Grid.Column="1" RowDefinitions="Auto,*,Auto" RowSpacing="14">
+              <Border Classes="card">
+                <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto,Auto" ColumnSpacing="12" RowSpacing="10">
+                  <TextBlock Classes="section" Grid.ColumnSpan="2" Text="{Binding SelectedPublishHistoryName}" />
+                  <TextBlock Grid.Row="1" Classes="muted" Text="{Binding SelectedPublishHistoryEntry.CreatedLabel, StringFormat=Zeit: {0}}" />
+                  <TextBlock Grid.Row="1" Grid.Column="1" Foreground="{DynamicResource DarkTextBrush}" Text="{Binding SelectedPublishHistoryEntry.Status, StringFormat=Status: {0}}" />
+                  <TextBlock Grid.Row="2" Foreground="{DynamicResource DarkTextBrush}" Text="{Binding SelectedPublishHistoryEntry.TargetProfileName, StringFormat=Ziel: {0}}" />
+                  <TextBlock Grid.Row="2" Grid.Column="1" Foreground="{DynamicResource DarkTextBrush}" Text="{Binding SelectedPublishHistoryEntry.ContentTemplateName, StringFormat=Vorlage: {0}}" />
+                  <TextBlock Grid.Row="3" Grid.ColumnSpan="2" Foreground="{DynamicResource DarkTextBrush}" Text="{Binding SelectedPublishHistoryEntry.ArticleUrl, StringFormat=Artikel-URL: {0}}" />
+                </Grid>
+              </Border>
+
+              <Border Grid.Row="1" Classes="card warm">
+                <Grid RowDefinitions="Auto,Auto,*" RowSpacing="10">
+                  <TextBlock Classes="section" Text="{Binding SelectedPublishHistoryEntry.Subject, StringFormat=Betreff: {0}}" />
+                  <TextBlock Grid.Row="1" Classes="muted" Text="{Binding SelectedPublishHistoryEntry.Tags, StringFormat=Tags: {0}}" />
+                  <ScrollViewer Grid.Row="2" MaxHeight="420">
+                    <StackPanel Spacing="10">
+                      <TextBlock Foreground="{DynamicResource DarkTextBrush}" Text="{Binding SelectedPublishHistoryEntry.Message}" />
+                      <TextBlock Classes="muted" Text="{Binding SelectedPublishHistoryEntry.FieldSummary, StringFormat=Felder: {0}}" />
+                    </StackPanel>
+                  </ScrollViewer>
+                </Grid>
+              </Border>
+
+              <Border Grid.Row="2" Classes="card dark">
+                <Grid RowDefinitions="Auto,Auto" RowSpacing="12">
+                  <TextBlock Classes="lightMuted" Text="{Binding PublishHistoryStatusMessage}" />
+                  <WrapPanel Grid.Row="1" ItemSpacing="10" LineSpacing="10">
+                    <Button Classes="primary" Click="RetrySelectedHistoryEntry_Click" Content="Ausgewaehltes Ziel erneut senden" />
+                  </WrapPanel>
+                </Grid>
+              </Border>
+            </Grid>
+          </Grid>
+        </ScrollViewer>
+      </TabItem>
+
+      <TabItem Header="Technik">
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+          <TabControl Margin="0,14,0,0">
+            <TabItem Header="Plugins">
+              <Grid RowDefinitions="Auto,*,Auto" RowSpacing="14" Margin="0,14,0,0">
+                <WrapPanel ItemSpacing="12" LineSpacing="12">
+                  <Border Classes="card soft" Width="230">
+                    <StackPanel Spacing="6">
+                      <TextBlock FontWeight="SemiBold" Foreground="{DynamicResource DarkTextBrush}" Text="Plugin-Projekte" />
+                      <TextBlock Classes="metric" Text="{Binding PluginProjectCount}" />
+                      <TextBlock Classes="muted" Text="{Binding BuiltPluginProjectCount, StringFormat=Build-Ausgaenge: {0}}" />
+                    </StackPanel>
+                  </Border>
+                  <Border Classes="card warm" Width="230">
+                    <StackPanel Spacing="6">
+                      <TextBlock FontWeight="SemiBold" Foreground="{DynamicResource DarkTextBrush}" Text="Runtime-DLLs" />
+                      <TextBlock Classes="metric" Text="{Binding RuntimePluginAssemblyCount}" />
+                      <TextBlock Classes="muted" Text="runtime/plugins" />
+                    </StackPanel>
+                  </Border>
+                  <Border Classes="card" Width="230">
+                    <StackPanel Spacing="6">
+                      <TextBlock FontWeight="SemiBold" Foreground="{DynamicResource DarkTextBrush}" Text="Discovery" />
+                      <TextBlock Classes="metric" Text="{Binding DiscoveredPluginCount}" />
+                      <TextBlock Classes="muted" Text="Vom PluginHost erkannt" />
+                    </StackPanel>
+                  </Border>
+                </WrapPanel>
+
+                <Grid Grid.Row="1" ColumnDefinitions="*,*" ColumnSpacing="14">
+                  <Border Classes="card soft">
+                    <Grid RowDefinitions="Auto,*" RowSpacing="12">
+                      <StackPanel Spacing="5">
+                        <TextBlock Classes="section" Text="Quellprojekte" />
+                        <TextBlock Classes="muted" Text="Aus dotnet/plugins ermittelt." />
+                      </StackPanel>
+                      <ScrollViewer Grid.Row="1" MaxHeight="520">
+                        <ItemsControl ItemsSource="{Binding PluginProjects}">
+                          <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="projects:PluginProjectSummary">
+                              <Border Margin="0,0,0,8"
+                                      Padding="10"
+                                      CornerRadius="12"
+                                      Background="{DynamicResource InputBrush}"
+                                      BorderBrush="{DynamicResource BorderLightBrush}"
+                                      BorderThickness="1">
+                                <StackPanel Spacing="4">
+                                  <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                                    <TextBlock FontWeight="SemiBold" Foreground="{DynamicResource DarkTextBrush}" Text="{Binding Name}" />
+                                    <TextBlock Grid.Column="1" Classes="muted" Text="{Binding HasBuildOutput, StringFormat=Built: {0}}" />
+                                  </Grid>
+                                  <TextBlock Classes="muted" Text="{Binding RelativePath}" />
+                                  <TextBlock Foreground="{DynamicResource DarkTextBrush}" Text="{Binding Category, StringFormat=Kategorie: {0}}" />
+                                  <TextBlock Classes="muted" Text="{Binding OutputAssemblyPath}" />
+                                </StackPanel>
+                              </Border>
+                            </DataTemplate>
+                          </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                      </ScrollViewer>
+                    </Grid>
+                  </Border>
+
+                  <Border Grid.Column="1" Classes="card dark">
+                    <Grid RowDefinitions="Auto,*,Auto,*" RowSpacing="12">
+                      <TextBlock Classes="sectionLight" Text="Runtime-Assemblies" />
+                      <ScrollViewer Grid.Row="1" MaxHeight="220">
+                        <ItemsControl ItemsSource="{Binding RuntimePluginAssemblies}">
+                          <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                              <Border Margin="0,0,0,8"
+                                      Padding="10"
+                                      CornerRadius="12"
+                                      Background="{DynamicResource CardMutedBrush}"
+                                      BorderBrush="{DynamicResource BorderDarkBrush}"
+                                      BorderThickness="1">
+                                <StackPanel Spacing="4">
+                                  <TextBlock FontWeight="SemiBold" Foreground="{DynamicResource PrimaryTextBrush}" Text="{Binding FileName}" />
+                                  <TextBlock Classes="lightMuted" Text="{Binding SizeInBytes, StringFormat=Groesse: {0} bytes}" />
+                                  <TextBlock Classes="lightMuted" Text="{Binding FullPath}" />
+                                </StackPanel>
+                              </Border>
+                            </DataTemplate>
+                          </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                      </ScrollViewer>
+
+                      <TextBlock Grid.Row="2" Classes="sectionLight" Text="Erkannte Plugins" />
+                      <ScrollViewer Grid.Row="3" MaxHeight="220">
+                        <ItemsControl ItemsSource="{Binding DiscoveredPlugins}">
+                          <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                              <Border Margin="0,0,0,8"
+                                      Padding="10"
+                                      CornerRadius="12"
+                                      Background="{DynamicResource CardMutedBrush}"
+                                      BorderBrush="{DynamicResource BorderDarkBrush}"
+                                      BorderThickness="1">
+                                <StackPanel Spacing="4">
+                                  <TextBlock FontWeight="SemiBold" Foreground="{DynamicResource PrimaryTextBrush}" Text="{Binding DisplayName}" />
+                                  <TextBlock Classes="lightMuted" Text="{Binding PluginId, StringFormat=Id: {0}}" />
+                                  <TextBlock Classes="lightMuted" Text="{Binding Kind, StringFormat=Typ: {0}}" />
+                                  <TextBlock Classes="lightMuted" Text="{Binding Version, StringFormat=Version: {0}}" />
+                                  <TextBlock Classes="lightMuted" Text="{Binding AssemblyFile, StringFormat=Assembly: {0}}" />
+                                </StackPanel>
+                              </Border>
+                            </DataTemplate>
+                          </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                      </ScrollViewer>
+                    </Grid>
+                  </Border>
+                </Grid>
+
+                <Border Grid.Row="2" Classes="card dark">
+                  <Grid RowDefinitions="Auto,Auto" RowSpacing="12">
+                    <TextBlock Classes="lightMuted" Text="{Binding PluginInspectorStatusMessage}" />
+                    <WrapPanel Grid.Row="1" ItemSpacing="10" LineSpacing="10">
+                      <Button Classes="darkButton" Click="RefreshPlugins_Click" Content="Aktualisieren" />
+                      <Button Classes="darkButton" Click="CopyPlugins_Click" Content="Builds in Runtime kopieren" />
+                      <Button Classes="primary" Click="DiscoverPlugins_Click" Content="Runtime-Plugins laden" />
+                    </WrapPanel>
+                  </Grid>
+                </Border>
+              </Grid>
+            </TabItem>
+
+            <TabItem Header="Altbestand">
+              <Grid RowDefinitions="Auto,*" RowSpacing="14" Margin="0,14,0,0">
+                <Border Classes="card soft">
+                  <StackPanel Spacing="6">
+                    <TextBlock Classes="section" Text="Legacy-Konfiguration" />
+                    <TextBlock Classes="muted" Text="{Binding LegacyConfigurationMessage}" />
+                    <WrapPanel ItemSpacing="10" LineSpacing="8">
+                      <Border Classes="pill">
+                        <TextBlock Foreground="{DynamicResource DarkTextBrush}" Text="{Binding LegacyConfigurationCount, StringFormat=Dateien: {0}}" />
+                      </Border>
+                      <Border Classes="pill">
+                        <TextBlock Foreground="{DynamicResource DarkTextBrush}" Text="{Binding HosterDefinitionCount, StringFormat=Hoster: {0}}" />
+                      </Border>
+                      <Border Classes="pill">
+                        <TextBlock Foreground="{DynamicResource DarkTextBrush}" Text="{Binding ControlDefinitionCount, StringFormat=Controls: {0}}" />
+                      </Border>
+                      <Border Classes="pill">
+                        <TextBlock Foreground="{DynamicResource DarkTextBrush}" Text="{Binding CodeDefinitionCommandCount, StringFormat=Commands: {0}}" />
+                      </Border>
+                    </WrapPanel>
+                  </StackPanel>
+                </Border>
+
+                <TabControl Grid.Row="1">
+                  <TabItem Header="Dateien">
+                    <ScrollViewer Margin="0,14,0,0">
+                      <ItemsControl ItemsSource="{Binding LegacyConfigurations}">
+                        <ItemsControl.ItemTemplate>
+                          <DataTemplate x:DataType="legacy:LegacyConfigurationSummary">
+                            <Border Classes="card" Margin="0,0,0,10">
+                              <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto,Auto" RowSpacing="4" ColumnSpacing="12">
+                                <TextBlock FontWeight="SemiBold" Foreground="{DynamicResource DarkTextBrush}" Text="{Binding FileName}" />
+                                <TextBlock Grid.Column="1" Classes="muted" Text="{Binding SizeInBytes}" />
+                                <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Classes="muted" Text="{Binding RelativePath}" />
+                                <TextBlock Grid.Row="2" Foreground="{DynamicResource DarkTextBrush}" Text="{Binding RootElement, StringFormat=Root: {0}}" />
+                                <TextBlock Grid.Row="2" Grid.Column="1" Classes="muted" Text="{Binding DirectChildElementCount, StringFormat=Elemente: {0}}" />
+                              </Grid>
+                            </Border>
+                          </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                      </ItemsControl>
+                    </ScrollViewer>
+                  </TabItem>
+
+                  <TabItem Header="Hoster">
+                    <Grid ColumnDefinitions="360,*" ColumnSpacing="14" Margin="0,14,0,0">
+                      <Border Classes="card soft">
+                        <Grid RowDefinitions="Auto,*" RowSpacing="12">
+                          <StackPanel Spacing="5">
+                            <TextBlock Classes="section" Text="Hoster" />
+                            <TextBlock Classes="muted" Text="{Binding HosterDefinitionCount, StringFormat=Eintraege: {0}}" />
+                          </StackPanel>
+                          <ListBox Grid.Row="1"
+                                   ItemsSource="{Binding HosterDefinitions}"
+                                   SelectedItem="{Binding SelectedHoster}">
+                            <ListBox.ItemTemplate>
+                              <DataTemplate>
+                                <Border Margin="0,0,0,8"
+                                        Padding="10"
+                                        CornerRadius="12"
+                                        Background="{DynamicResource InputBrush}"
+                                        BorderBrush="{DynamicResource BorderLightBrush}"
+                                        BorderThickness="1">
+                                  <StackPanel Spacing="3">
+                                    <TextBlock FontWeight="SemiBold" Foreground="{DynamicResource DarkTextBrush}" Text="{Binding DisplayName}" />
+                                    <TextBlock Classes="muted" Text="{Binding AliasCount, StringFormat=Aliase: {0}}" />
+                                  </StackPanel>
+                                </Border>
+                              </DataTemplate>
+                            </ListBox.ItemTemplate>
+                          </ListBox>
+                        </Grid>
+                      </Border>
+
+                      <Grid Grid.Column="1" RowDefinitions="Auto,Auto" RowSpacing="14">
+                        <Border Classes="card">
+                          <Grid RowDefinitions="Auto,Auto,Auto" RowSpacing="10">
+                            <TextBlock Classes="section" Text="Ausgewaehlter Hoster" />
+                            <Grid Grid.Row="1" ColumnDefinitions="*,*" ColumnSpacing="12">
+                              <StackPanel Spacing="6">
+                                <TextBlock Classes="muted" Text="Name" />
+                                <TextBox Text="{Binding SelectedHoster.Name}" PlaceholderText="Hoster-Name" />
+                              </StackPanel>
+                              <StackPanel Grid.Column="1" Spacing="6">
+                                <TextBlock Classes="muted" Text="Kurzname" />
+                                <TextBox Text="{Binding SelectedHoster.ShortName}" PlaceholderText="RG" />
+                              </StackPanel>
+                            </Grid>
+                            <StackPanel Grid.Row="2" Spacing="6">
+                              <TextBlock Classes="muted" Text="Aliase, eine Zeile pro Eintrag" />
+                              <TextBox AcceptsReturn="True"
+                                       MinHeight="180"
+                                       Text="{Binding SelectedHoster.AliasesText, Mode=TwoWay}"
+                                       TextWrapping="Wrap"
+                                       PlaceholderText="rapidgator&#x0a;rg" />
+                            </StackPanel>
+                          </Grid>
+                        </Border>
+
+                        <Border Grid.Row="1" Classes="card dark">
+                          <Grid RowDefinitions="Auto,Auto" RowSpacing="12">
+                            <TextBlock Classes="lightMuted" Text="{Binding HosterEditorStatusMessage}" />
+                            <WrapPanel Grid.Row="1" ItemSpacing="10" LineSpacing="10">
+                              <Button Classes="darkButton" Click="AddHoster_Click" Content="Hinzufuegen" />
+                              <Button Classes="darkButton" Click="RemoveHoster_Click" Content="Entfernen" />
+                              <Button Classes="darkButton" Click="ReloadHosters_Click" Content="Neu laden" />
+                              <Button Classes="primary" Click="SaveHosters_Click" Content="Speichern" />
+                            </WrapPanel>
+                          </Grid>
+                        </Border>
+                      </Grid>
+                    </Grid>
+                  </TabItem>
+
+                  <TabItem Header="Controls">
+                    <Grid ColumnDefinitions="360,*" ColumnSpacing="14" Margin="0,14,0,0">
+                      <Border Classes="card soft">
+                        <Grid RowDefinitions="Auto,*" RowSpacing="12">
+                          <StackPanel Spacing="5">
+                            <TextBlock Classes="section" Text="Controls" />
+                            <TextBlock Classes="muted" Text="{Binding ControlDefinitionCount, StringFormat=Eintraege: {0}}" />
+                          </StackPanel>
+                          <ListBox Grid.Row="1"
+                                   ItemsSource="{Binding ControlDefinitions}"
+                                   SelectedItem="{Binding SelectedControlDefinition}">
+                            <ListBox.ItemTemplate>
+                              <DataTemplate x:DataType="controls:ControlDefinitionSummary">
+                                <Border Margin="0,0,0,8"
+                                        Padding="10"
+                                        CornerRadius="12"
+                                        Background="{DynamicResource InputBrush}"
+                                        BorderBrush="{DynamicResource BorderLightBrush}"
+                                        BorderThickness="1">
+                                  <StackPanel Spacing="3">
+                                    <TextBlock FontWeight="SemiBold" Foreground="{DynamicResource DarkTextBrush}" Text="{Binding ControlName}" />
+                                    <TextBlock Classes="muted" Text="{Binding TemplateCount, StringFormat=Templates: {0}}" />
+                                  </StackPanel>
+                                </Border>
+                              </DataTemplate>
+                            </ListBox.ItemTemplate>
+                          </ListBox>
+                        </Grid>
+                      </Border>
+
+                      <Grid Grid.Column="1" RowDefinitions="Auto,Auto,*" RowSpacing="14">
+                        <Border Classes="card">
+                          <StackPanel Spacing="6">
+                            <TextBlock Classes="section" Text="{Binding SelectedControlName}" />
+                            <TextBlock Classes="muted" Text="{Binding SelectedControlDefaultTitle, StringFormat=Default-Titel: {0}}" />
+                            <TextBlock Foreground="{DynamicResource DarkTextBrush}" Text="{Binding SelectedControlDefaultHint}" />
+                            <WrapPanel ItemSpacing="12" LineSpacing="8">
+                              <Border Classes="pill">
+                                <TextBlock Foreground="{DynamicResource DarkTextBrush}" Text="{Binding SelectedControlTemplateCount, StringFormat=Templates: {0}}" />
+                              </Border>
+                              <Border Classes="pill">
+                                <TextBlock Foreground="{DynamicResource DarkTextBrush}" Text="{Binding SelectedControlListItemCount, StringFormat=Listen: {0}}" />
+                              </Border>
+                            </WrapPanel>
+                          </StackPanel>
+                        </Border>
+
+                        <Border Grid.Row="1" Classes="card warm">
+                          <Grid RowDefinitions="Auto,*" RowSpacing="12">
+                            <TextBlock Classes="section" Text="Templates" />
+                            <ListBox Grid.Row="1"
+                                     MaxHeight="180"
+                                     ItemsSource="{Binding SelectedControlTemplates}"
+                                     SelectedItem="{Binding SelectedControlTemplate}">
+                              <ListBox.ItemTemplate>
+                                <DataTemplate x:DataType="controls:ControlTemplateSummary">
+                                  <Border Margin="0,0,0,8"
+                                          Padding="10"
+                                          CornerRadius="12"
+                                          Background="{DynamicResource InputBrush}"
+                                          BorderBrush="{DynamicResource BorderLightBrush}"
+                                          BorderThickness="1">
+                                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                                      <TextBlock FontWeight="SemiBold" Foreground="{DynamicResource DarkTextBrush}" Text="{Binding DisplayName}" />
+                                      <TextBlock Grid.Column="1" Classes="muted" Text="{Binding ListItemCount, StringFormat=Listen: {0}}" />
+                                    </Grid>
+                                  </Border>
+                                </DataTemplate>
+                              </ListBox.ItemTemplate>
+                            </ListBox>
+                          </Grid>
+                        </Border>
+
+                        <Border Grid.Row="2" Classes="card dark">
+                          <StackPanel Spacing="8">
+                            <TextBlock Classes="sectionLight" Text="{Binding SelectedTemplateDisplayName}" />
+                            <TextBlock Classes="lightMuted" Text="{Binding SelectedTemplateTitle, StringFormat=Titel: {0}}" />
+                            <TextBlock Foreground="{DynamicResource PrimaryTextBrush}" Text="{Binding SelectedTemplateHint, StringFormat=Hinweis: {0}}" />
+                            <TextBlock Foreground="{DynamicResource PrimaryTextBrush}" Text="{Binding SelectedTemplateDefaultValue, StringFormat=Default-Wert: {0}}" />
+                            <TextBlock Classes="lightMuted" Text="{Binding SelectedTemplateListItemCount, StringFormat=Listeneintraege: {0}}" />
+                          </StackPanel>
+                        </Border>
+                      </Grid>
+                    </Grid>
+                  </TabItem>
+
+                  <TabItem Header="Code">
+                    <ScrollViewer Margin="0,14,0,0">
+                      <ItemsControl ItemsSource="{Binding CodeDefinitionGroups}">
+                        <ItemsControl.ItemTemplate>
+                          <DataTemplate x:DataType="code:CodeDefinitionGroup">
+                            <Border Classes="card warm" Margin="0,0,0,10">
+                              <StackPanel Spacing="8">
+                                <Grid ColumnDefinitions="*,Auto">
+                                  <TextBlock Classes="section" Text="{Binding Name}" />
+                                  <TextBlock Grid.Column="1" Classes="muted" Text="{Binding Commands.Count, StringFormat=Commands: {0}}" />
+                                </Grid>
+                                <ItemsControl ItemsSource="{Binding Commands}">
+                                  <ItemsControl.ItemTemplate>
+                                    <DataTemplate x:DataType="code:CodeDefinitionCommand">
+                                      <Border Margin="0,0,0,8"
+                                              Padding="10"
+                                              CornerRadius="12"
+                                              Background="{DynamicResource InputBrush}"
+                                              BorderBrush="{DynamicResource BorderLightBrush}"
+                                              BorderThickness="1">
+                                        <StackPanel Spacing="4">
+                                          <TextBlock FontWeight="SemiBold" Foreground="{DynamicResource DarkTextBrush}" Text="{Binding Name}" />
+                                          <TextBlock Classes="muted" Text="{Binding Signature}" />
+                                          <TextBlock Foreground="{DynamicResource DarkTextBrush}" Text="{Binding Snippet}" MaxHeight="70" />
+                                        </StackPanel>
+                                      </Border>
+                                    </DataTemplate>
+                                  </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                              </StackPanel>
+                            </Border>
+                          </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                      </ItemsControl>
+                    </ScrollViewer>
+                  </TabItem>
+                </TabControl>
+              </Grid>
+            </TabItem>
+          </TabControl>
+        </ScrollViewer>
+      </TabItem>
+    </TabControl>
+  </Grid>
+</Window>

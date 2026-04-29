@@ -1,0 +1,5 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\IntelligeN.Core.Abstractions\IntelligeN.Core.Abstractions.csproj" />
+  </ItemGroup>
+</Project>

@@ -25,6 +25,7 @@ The CORE uses the following open source components:
 ###SDK
 In order to create plugins for IntelligeN, there is a video series on YouTube:
 - https://www.youtube.com/watch?v=UCkFrk2UoSk
+- For the current SDK-only workflow see [src/sdk/PLUGIN_SDK.md](src/sdk/PLUGIN_SDK.md)
 - to continue ...
 
 ###VIEW

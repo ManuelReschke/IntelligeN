@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+  <templatetype filename="Movie" checksum="#">Movie</templatetype>
+  <controls>
+    <IReleaseName>
+      <title>Release name</title>
+      <value list="#">James.Bond.007.Spectre.2015.German.DTS.DL.1080p.BluRay.x264</value>
+      <position left="8" top="8" width="240" height="24" />
+    </IReleaseName>
+    <ITitle>
+      <title>Original title</title>
+      <value list="#">James Bond 007 - Spectre</value>
+      <position left="256" top="8" width="240" height="24" />
+    </ITitle>
+    <IPicture>
+      <title>Picture link</title>
+      <value list="#">https://m.media-amazon.com/images/M/sample-spectre.jpg</value>
+      <hosters>
+        <hoster name="imgur">https://imgur.com/sample-spectre</hoster>
+        <hoster name="directupload">https://directupload.net/sample-spectre</hoster>
+      </hosters>
+      <position left="8" top="40" width="320" height="24" />
+    </IPicture>
+    <IReleaseDate>
+      <title>Release date</title>
+      <value list="#">2026-04-22</value>
+      <position left="256" top="40" width="120" height="24" />
+    </IReleaseDate>
+    <ISample>
+      <title>Sample</title>
+      <value list="#">https://sample-video.example/spectre-trailer</value>
+      <position left="384" top="40" width="240" height="24" />
+    </ISample>
+    <ILanguage>
+      <title>Language</title>
+      <value list="#">German / English</value>
+      <position left="8" top="72" width="160" height="24" />
+    </ILanguage>
+    <IRuntime>
+      <title>Runtime</title>
+      <value list="#">148</value>
+      <position left="176" top="72" width="80" height="24" />
+    </IRuntime>
+    <IGenre>
+      <title>Genre</title>
+      <value list="#">Action / Thriller</value>
+      <position left="264" top="72" width="160" height="24" />
+    </IGenre>
+    <IVideoCodec>
+      <title>Video codec</title>
+      <value list="#">x264</value>
+      <position left="432" top="72" width="120" height="24" />
+    </IVideoCodec>
+    <IVideoStream>
+      <title>Video stream</title>
+      <value list="#">1080p BluRay</value>
+      <position left="560" top="72" width="140" height="24" />
+    </IVideoStream>
+    <IAudioStream>
+      <title>Audio stream</title>
+      <value list="#">DTS</value>
+      <position left="708" top="72" width="120" height="24" />
+    </IAudioStream>
+    <INFO>
+      <title>NFO</title>
+      <value list="#">James Bond 007 Spectre (2015)
+Release Date: 2016-02-17
+Cinema Date: 2015-11-05</value>
+      <position left="8" top="104" width="320" height="72" />
+    </INFO>
+    <INotes>
+      <title>Notes</title>
+      <value list="#">James Bond receives a cryptic message from his past and uncovers a sinister organization. This sample file exists to exercise the new XML workspace.</value>
+      <position left="336" top="104" width="360" height="72" />
+    </INotes>
+  </controls>
+  <mirrors>
+    <mirror>
+      <directlink status="unknown" size="0" partsize="0" hoster="Rapidgator" parts="1">https://rapidgator.net/sample-file</directlink>
+      <crypter name="Hide.cx" status="unknown" size="0" partsize="0" hoster="Rapidgator" parts="1" statusimage="" statusimagetext="">https://hide.cx/container/sample</crypter>
+    </mirror>
+  </mirrors>
+</xml>

@@ -1,4 +1,3 @@
-SET rundir=%cd%
-chdir ..
-
-START "Plugin Wizard" /D"%cd%" "PluginWizard.exe" "%rundir%"
+@echo off
+setlocal
+powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0..\..\tools\CreatePlugin.ps1" -PluginType app %*

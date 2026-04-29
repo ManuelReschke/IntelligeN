@@ -1,0 +1,5 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\IntelligeN.Core\IntelligeN.Core.csproj" />
+  </ItemGroup>
+</Project>

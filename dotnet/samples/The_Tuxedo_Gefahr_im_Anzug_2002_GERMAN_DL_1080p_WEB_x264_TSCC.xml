@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+  <templatetype filename="Movie" checksum="0207AF5C9DA356FD517EFFA27F93534F">Movie</templatetype>
+  <controls>
+    <IReleaseName>
+      <title>Release name</title>
+      <value list="#">The.Tuxedo.Gefahr.im.Anzug.2002.GERMAN.DL.1080p.WEB.x264-TSCC</value>
+      <position left="6" top="0" width="300" height="37"/>
+    </IReleaseName>
+    <IReleaseDate>
+      <title>Release date</title>
+      <value list="#">06.09.2022</value>
+      <position left="312" top="0" width="147" height="37"/>
+    </IReleaseDate>
+    <ITitle>
+      <title>Original title</title>
+      <value list="#"></value>
+      <position left="465" top="0" width="147" height="37"/>
+    </ITitle>
+    <IPicture>
+      <title>Picture link</title>
+      <value list="#"></value>
+      <hosters>
+        <hoster name="abload2021"></hoster>
+        <hoster name="Imgur.com"></hoster>
+      </hosters>
+      <position left="6" top="43" width="300" height="37"/>
+    </IPicture>
+    <ISample>
+      <title>Sample</title>
+      <value list="#"></value>
+      <position left="312" top="43" width="147" height="37"/>
+    </ISample>
+    <ITrailer>
+      <title>Trailer link</title>
+      <value list="#"></value>
+      <position left="465" top="43" width="147" height="37"/>
+    </ITrailer>
+    <IRuntime>
+      <title>Runtime</title>
+      <value list="#"></value>
+      <position left="6" top="86" width="147" height="37"/>
+    </IRuntime>
+    <IGenre>
+      <title>Genre</title>
+      <value list="#"></value>
+      <position left="159" top="86" width="147" height="37"/>
+    </IGenre>
+    <ILanguage>
+      <title>Language</title>
+      <value list="#"></value>
+      <position left="312" top="86" width="147" height="37"/>
+    </ILanguage>
+    <IAudioStream>
+      <title>Audio stream</title>
+      <value list="#"></value>
+      <position left="465" top="86" width="147" height="37"/>
+    </IAudioStream>
+    <IVideoCodec>
+      <title>Video codec</title>
+      <value list="#"></value>
+      <position left="6" top="129" width="147" height="37"/>
+    </IVideoCodec>
+    <IVideoStream>
+      <title>Video stream</title>
+      <value list="#"></value>
+      <position left="159" top="129" width="147" height="37"/>
+    </IVideoStream>
+    <IPassword>
+      <title>Password</title>
+      <value list="#"></value>
+      <position left="312" top="129" width="147" height="37"/>
+    </IPassword>
+    <INotes>
+      <title>Notes</title>
+      <value list="#"></value>
+      <position left="465" top="129" width="147" height="37"/>
+    </INotes>
+    <INFO>
+      <title>NFO</title>
+      <value list="#">┌────-───--──- -     .               .                .                 .     ░
+│▐▀████████████████▄·:·▄▄████████▄▄ ·:· ▄▄████████▄▄ ·:· ▄▄████████▄▄ ·::. ░.▒▓
+│▐█▄▀████████████████▄▓█████████████▄.▄██████████████▄.▄██████████████▄ · ▌▓░░█
+:▐▓█▌▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█▓█▀▀▄▄▄▄▄▄▄▒▀▀█▓████▀▀▄▄▄▄▄▄▒▀▀█▓████▀▀▄▄▄▄▄▄▒▀▀█▄ ▌█__█
+·▐▓▓▌▌                ▐▀▄▒▀        ▀▓▄▀▓█▀▄▒▀       ▀▓▄▀▓█▀▄▒▀       ▀▓▄▀█ ████
+  ▀▓▌▌                ▐▀             ░▓▐▒▀            ░▓▐▒▀            ░▓▐▌▓███
+ ▒   ▀▀▓▓▓█░    ▒█▓███▓    ▄█▓▓███▄   ░▒█    ▄█▓▓██▄   ░▓▌    ▄█▓▓██▄   ░▒█░  █
+ █░_▓▐ ▓▓██░    ▒█▓▓██░   ░█▓░░░░░▒▓▓██▀    ▓█▒░░░░▒▓▓▓█▀    ▓█▒░░░░░▀▀▀▀▀▀▒__█
+ ████▐ ▓▓██░    ▒█▓▒██     ▀▄▀▀▀▀▀▀▀███░   ░█▓░░░ ░░▓▓██░   ░█▓░░░     .: ▌▓███
+ ████▐ ▓███░    ▒█▓░▒▓█      ▀▀▀▀▀▀▀■▄▀▓░  ░█▓░░   ░▓▓██░   ░█▓░░    .::· ▌████
+ █  █▐ ▓▓██░    ▒█▓░░░▒▓▄▄            ▀▄█░ ░█▓▒░░  ░▓███░   ░█▓▒░░    ·:. ▌█  █
+ █__█▐ ▓███░    ▒█▓▒░░░░▒▒▓▓▄▄▄▄▄▄      ▓█ ░█▓▒▒░ ░░▓███░   ░█▓▒▒░░░    · ▌█__█
+ ████▐ ▓███░    ▒█▓▓▓▓▓▓▓▒▒▒▒▒▓▓█▄▀▄    ░▓▌░█▓▒▒▒▒▓▓▓▓▓▓▒   ░█▓▒▒▒▒▓▓▓▓▓▄ ▌▓███
+ ████▐ ▓███░    ▒█▓▄▀█████▓▒▒▒▒▓████▌   ░▓▌ ▓█▓▒▒▓▄▀█████▄   ▓█▓▒▒▓▄▀█████▄░▓██
+ █  █▐ ▓███░    ▒█▓██.▄▄▄▄▄█████▀███▌   ░▓▌ ░█████▀█▄▄▄▄▄▄▌  ░█████▀█▄▄▄▄▄▄▌░ █
+ █__█▐ ▓███░    ▒█▓██▐    ▀▄▀▀▀▀▀▄█▀    ░▓▌  ▀▄▀▀▀▀▄▀   ░▓▌   ▀▄▀▀▀▀▄▀   ░▓▌__█
+ ████▐ ▓███░    ▒█▓▓██▌     ▀▀▀▀▀      ░▓█░    ▀▀▀▀    ░▒▓▒░    ▀▀▀▀    ░▒▓ ▓██
+ ████▐ "███░    ▒█▒░▓██▄             ░▒▓██▓▒░         ░▒▓██▓▒░         ░▒▓▌░███
+ █  █▐   ▀█░░░░░▒█░  "▀██▓▒░░░░░░░░░▒▓▓▀"▀██▓▒░░░░░░░▒▓▓▀"▀██▓▒░░░░░░░▒▓▓▀ ▓  █
+ █__█▐     ▀▀▀▀▀▀▀      "▀▀▀▀▀▀▀▀▀▀▀▀"     "▀▀▀▀▀▀▀▀▀▀"     "▀▀▀▀▀▀▀▀▀▀"  ▌█__█
+ ████▐ .                     ▄▄      ▄   ▄▄  ▄   ▄▄  ▄   ▄▄             . ▌████
+ ████▐ : THE TS :.        . █ █ █▀▄ ▓▄█ ▀▀▄ ▓▄█ █ █ ▀█▀ ▀▀▄ .     .: iN : ▌████
+ █  █▐ : CAPPER CREW :. .:: ▓▀  ▓   ▀▄▄ ▀▄▓ ▀▄▄ ▓ ▀  ▓  ▀▄▓ ::. .: 2021 : ▌█  █
+ █__█▐ ·                                                                · ▌█__█
+ ████▐ ------------------------------------------------------------------ ▌████
+ ████▐   The.Tuxedo.Gefahr.im.Anzug.2002.GERMAN.DL.1080p.WEB.x264-TSCC    ▌████
+ █  █▐ ------------------------------------------------------------------ ▌█  █
+ █__█▐                                                                    ▌█__█
+ ████▐      ▀ ▄▀▓ ▄▀▀▄▀█                                                  ▌████
+ ████▐ ░▒▓▌ ▓ █ █ █▀ █▄▓ ▐▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░ ▌████
+ █  █▐ ▒·   ▀ ▀   ▀                                                    ·▒ ▌█  █
+ █__█▐ ▒                                                                ▒ ▌█__█
+ ████▐ ▒ Name...............: The Tuxedo Gefahr im Anzug (2002)         ▒ ▌████
+ ████▐ ▒ Erscheinungsdatum..: 27.09.2002                                ▒ ▌████
+ █  █▐ ▒ Releasedatum.......: 26.05.2021                                ▒ ▌█  █
+ █__█▐ ▒ Source.............: WEB                                       ▒ ▌█__█
+ ████▐ ▒ Format.............: MKV                                       ▒ ▌████
+ ████▐ ▒ Codec..............: x264 Main@L4 (2pass)                      ▒ ▌████
+ █  █▐ ▒ Videobitrate.......: 6 810 kb/s                                ▒ ▌█  █
+ █__█▐ ▒ Aufloesung.........: 1920 x 1080 (16:9)                        ▒ ▌█__█
+ ████▐ ▒ Frames.............: 23.976 FPS                                ▒ ▌████
+ ████▐ ▒ Sprachen...........: German / English                          ▒ ▌████
+ █  █▐ ▒ Audio (de).........: 640 kb/s E-AC-3 5.1 48.0 kHz              ▒ ▌█  █
+ █__█▐ ▒ Audio (en).........: 640 kb/s E-AC-3 5.1 48.0 kHz              ▒ ▌█__█
+ ████▐ ▒ Untertitel.........: de (forced), en (forced), de, en          ▒ ▌████
+ ████▐ ▒ Spieldauer.........: 01:39:36                                  ▒ ▌████
+ █  █▐ ▒ IMDb...............: https://imdb.com/title/tt0290095          ▒ ▌█  █
+ █__█▐ ▒ Dateigroesse.......: 5.478 GB                                  ▒ ▌█__█
+ ████▐ ▒                                                                ▒ ▌████
+ ████▐ ▒                                                                ▒ ▌████
+ █  █▐ ▒4afde93ad8a5e60741ac053c533f75b03d48ffcab22f8b33c0cabf59a30cb812▒ ▌█  █
+ █__█▐ ▒.    ▄▄          ▄                                             .▒ ▌█__█
+ ████▐ ░▒▓▌ █ █ █   ▄▀█ ▀█▀ ▐▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░ ▌████
+ ████▐ ▒·   ▓▀  ▓▄▄ █▄▓  ▓                                             ·▒ ▌████
+ █  █▐ ▒                                                                ▒ ▌█  █
+ █__█▐ ▒                                                                ▒ ▌█__█
+ ████▐ ▒ The Tuxedo - Gefahr im Anzug                                   ▒ ▌████
+ ████▐ ▒ (The Tuxedo)                                                   ▒ ▌████
+ █  █▐ ▒                                                                ▒ ▌█  █
+ █__█▐ ▒ Jimmy Tong ist einer der besten Taxifahrer der Stadt, auch     ▒ ▌█__█
+ ████▐ ▒ wenn die Ordnungsbehoerden das vielleicht ein wenig anders     ▒ ▌████
+ ████▐ ▒ sehen moegen. Als er einen neuen Job als Chauffeur annimmt,    ▒ ▌████
+ █  █▐ ▒ weil er dort wesentlich mehr Geld verdienen kann, schlittert   ▒ ▌█  █
+ █__█▐ ▒ er ungewollt in die Rolle eines Agenten.                       ▒ ▌█__█
+ ████▐ ▒                                                                ▒ ▌████
+ ████▐ ▒                                                                ▒ ▌████
+ █  █▐ ▒                                                                ▒ ▌█  █
+ █__█▐ ▒                                                                ▒ ▌█__█
+ ████▐ ▒.    ▄▄  ▄▄  ▄   ▄   ▄▄                                        .▒ ▌████
+ ████▐ ░▒▓▌ █ █ ▓ █ ▀█▀ ▓▄█ ▀▀▄ ▐▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░ ▌████
+ █  █▐ ▒·   ▓ ▀ ▀▀▀  ▓  ▀▄▄ ▀▄▓                                        ·▒ ▌█  █
+ █__█▐ ▒                                                                ▒ ▌█__█
+ ████▐ ▒                                                                ▒ ▌████
+ ████▐ ▒ Ihr koennt Encoden, Cappen, Dubben oder untouched WEB-         ▒ ▌████
+ █  █▐ ▒ Downloads erstellen? Ihr wisst, wo ihr uns finden koennt!      ▒ ▌█  █
+ █__█▐ ▒                                                                ▒ ▌█__█
+ ████▐ ▒                                                                ▒ ▌████
+ ████▐ ▒.    ▄        ▄   ▄   ▄   ▄▄                                   .▒ ▌████
+ █  █▐ ░▒▓▌ █ ▄  █▀▄ ▓▄█ ▓▄█ ▀█▀ ▀▀▄ ▐▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░ ▌█  █
+ █__█▐ ▒·   ▓▄▄▌ ▓   ▀▄▄ ▀▄▄  ▓  ▀▄▓                                   ·▒ ▌█__█
+ ████▐ ▒                                                                ▒ ▌████
+ ████▐ ▒                                                                ▒ ▌████
+ █  █▐ ▒                     To all our friends                         ▒ ▌█  █
+ █__█▐ ▒                                                                ▒ ▌█__█
+ ████▐ ▒                                                                ▒ ▌████
+ ████▐ ▒.                                                              .▒ ▌████
+ █C3█▐ ░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░ ▌█ 8█
+ █_░▓▐ .       .┌────────┐                .                 .     ┌─────┐ ▌▓░_█
+ █▓▒░ .: ASCii (C) 2019 -+─────-────--──--+-──--────-───────+- by : SAB :. ░▒▓█
+ ▒░    └────────┘·       ·                ·                 └─────┘     ·    ░▒
+</value>
+      <position left="6" top="172" width="300" height="96"/>
+    </INFO>
+    <IDescription>
+      <title>Description</title>
+      <value list="#"></value>
+      <position left="312" top="172" width="300" height="96"/>
+    </IDescription>
+  </controls>
+  <mirrors>
+    <mirror>
+      <directlink status="NotChecked" size="0" partsize="0" hoster="ddownload.com" parts="6">https://ddownload.com/024h4ilso74h/The.Tuxedo.Gefahr.im.Anzug.2002.GERMAN.DL.1080p.WEB.x264-TSCC.part1.rar
+https://ddownload.com/6q75mvwis6in/The.Tuxedo.Gefahr.im.Anzug.2002.GERMAN.DL.1080p.WEB.x264-TSCC.part2.rar
+https://ddownload.com/v6l9f5qymval/The.Tuxedo.Gefahr.im.Anzug.2002.GERMAN.DL.1080p.WEB.x264-TSCC.part3.rar
+https://ddownload.com/ut7s5o4kvbfs/The.Tuxedo.Gefahr.im.Anzug.2002.GERMAN.DL.1080p.WEB.x264-TSCC.part4.rar
+https://ddownload.com/e8om8c4okzrz/The.Tuxedo.Gefahr.im.Anzug.2002.GERMAN.DL.1080p.WEB.x264-TSCC.part5.rar
+https://ddownload.com/634mffmah5q6/The.Tuxedo.Gefahr.im.Anzug.2002.GERMAN.DL.1080p.WEB.x264-TSCC.part6.rar
+</directlink>
+      <crypter name="Filecrypt.cc" status="Online" size="5609" partsize="0" hoster="ddownload.com" parts="6" statusimage="https://filecrypt.cc/Stat/CBA264236C.png" statusimagetext="https://filecrypt.cc/Stat/XXL/6E1104BE87.png">https://filecrypt.cc/Container/C73B1352D2.html</crypter>
+    </mirror>
+    <mirror>
+      <directlink status="NotChecked" size="0" partsize="0" hoster="hexupload.net" parts="6">https://hexupload.net/zebcfab9z4mi
+https://hexupload.net/hlriikfarvge
+https://hexupload.net/2wxvqwihey9x
+https://hexupload.net/3ar8sxmlpkf2
+https://hexupload.net/svel2ptahi6l
+https://hexupload.net/bs3ftbssil70
+</directlink>
+      <crypter name="Filecrypt.cc" status="Online" size="5609" partsize="0" hoster="hexupload.net" parts="6" statusimage="https://filecrypt.cc/Stat/54C8FDFFE7.png" statusimagetext="https://filecrypt.cc/Stat/XXL/7D739E02AB.png">https://filecrypt.cc/Container/011FB1AD9B.html</crypter>
+    </mirror>
+    <mirror>
+      <directlink status="NotChecked" size="0" partsize="0" hoster="Nitroflare.com" parts="6">https://nitroflare.com/view/F0016B79EF78E14/The.Tuxedo.Gefahr.im.Anzug.2002.GERMAN.DL.1080p.WEB.x264-TSCC.part1.rar
+https://nitroflare.com/view/D72F2955BB83E55/The.Tuxedo.Gefahr.im.Anzug.2002.GERMAN.DL.1080p.WEB.x264-TSCC.part2.rar
+https://nitroflare.com/view/BDFD8D657436740/The.Tuxedo.Gefahr.im.Anzug.2002.GERMAN.DL.1080p.WEB.x264-TSCC.part3.rar
+https://nitroflare.com/view/EDE29ECEB4D9AD5/The.Tuxedo.Gefahr.im.Anzug.2002.GERMAN.DL.1080p.WEB.x264-TSCC.part4.rar
+https://nitroflare.com/view/999E6F264282734/The.Tuxedo.Gefahr.im.Anzug.2002.GERMAN.DL.1080p.WEB.x264-TSCC.part5.rar
+https://nitroflare.com/view/46C40C4589B1350/The.Tuxedo.Gefahr.im.Anzug.2002.GERMAN.DL.1080p.WEB.x264-TSCC.part6.rar
+</directlink>
+      <crypter name="Filecrypt.cc" status="Online" size="5609" partsize="0" hoster="Nitroflare.com" parts="6" statusimage="https://filecrypt.cc/Stat/C647246A04.png" statusimagetext="https://filecrypt.cc/Stat/XXL/425DD90B61.png">https://filecrypt.cc/Container/C8098960FD.html</crypter>
+    </mirror>
+    <mirror>
+      <directlink status="Unknown" size="0" partsize="0" hoster="Rapidgator.net" parts="6">https://rapidgator.net/file/2d206ab4d225723b4d0b93b06dce2b96/The.Tuxedo.Gefahr.im.Anzug.2002.GERMAN.DL.1080p.WEB.x264-TSCC.part1.rar.html
+https://rapidgator.net/file/34262d8cd7e2d58b748437d53333f021/The.Tuxedo.Gefahr.im.Anzug.2002.GERMAN.DL.1080p.WEB.x264-TSCC.part2.rar.html
+https://rapidgator.net/file/60079a2ca9cf54fa3edd3e2ddeaab090/The.Tuxedo.Gefahr.im.Anzug.2002.GERMAN.DL.1080p.WEB.x264-TSCC.part3.rar.html
+https://rapidgator.net/file/7592866901a31034e86672dc72ea96cf/The.Tuxedo.Gefahr.im.Anzug.2002.GERMAN.DL.1080p.WEB.x264-TSCC.part4.rar.html
+https://rapidgator.net/file/2c4fe763c030919e2fddf41461524084/The.Tuxedo.Gefahr.im.Anzug.2002.GERMAN.DL.1080p.WEB.x264-TSCC.part5.rar.html
+https://rapidgator.net/file/289fb2f4d07b17ce9b13859b86bbb2ad/The.Tuxedo.Gefahr.im.Anzug.2002.GERMAN.DL.1080p.WEB.x264-TSCC.part6.rar.html
+</directlink>
+      <crypter name="Filecrypt.cc" status="Online" size="5609" partsize="0" hoster="Rapidgator.net" parts="6" statusimage="https://filecrypt.cc/Stat/EDEF173DD4.png" statusimagetext="https://filecrypt.cc/Stat/XXL/CB19C61894.png">https://filecrypt.cc/Container/3EE9C21A57.html</crypter>
+    </mirror>
+  </mirrors>
+</xml>

@@ -10,7 +10,7 @@
 			<BorlandProject>
 				<Delphi.Personality>
 					<Parameters>
-						<Parameters Name="HostApplication">../../../../../bin_portable\IntelligeN.exe</Parameters>
+						<Parameters Name="HostApplication">$(INTELLIGEN_HOST_APP)</Parameters>
 					</Parameters>
 				</Delphi.Personality>
 			</BorlandProject>

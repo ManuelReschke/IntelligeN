@@ -172,6 +172,16 @@ or contact:
   {$define DelphiXE7AndUp}
   {$define Delphi2009AndUp}
  {$endif}
+ {$if CompilerVersion>28.0}
+  {$define DelphiXEAndUp}
+  {$define DelphiXE2AndUp}
+  {$define DelphiXE3AndUp}
+  {$define DelphiXE4AndUp}
+  {$define DelphiXE5AndUp}
+  {$define DelphiXE6AndUp}
+  {$define DelphiXE7AndUp}
+  {$define Delphi2009AndUp}
+ {$ifend}
  {$ifndef Delphi4or5}
   {$ifndef BCB}
    {$define Delphi6AndUp}

@@ -1476,7 +1476,7 @@ begin
           otExecutor_ref.Asy_Execute(Self);
         except
           on E: Exception do begin
-            taskException := AcquireExceptionObject;
+            taskException := Exception(AcquireExceptionObject);
             FilterException(taskException);
             if assigned(taskException) then
               SetException(taskException);
@@ -3205,15 +3205,18 @@ end; { TOmniTaskControl.OnTerminated }
 
 function TOmniTaskControl.OnTerminated(eventHandler: TOmniOnTerminatedFunctionSimple):
   IOmniTaskControl;
+var
+  onTerminated: TOmniOnTerminatedFunction;
 begin
   if not assigned(otcOnTerminatedExec) then
     otcOnTerminatedExec := TOmniMessageExec.Create;
   otcOnTerminatedSimple := eventHandler;
-  otcOnTerminatedExec.SetOnTerminated(
+  onTerminated :=
     procedure (const task: IOmniTaskControl)
     begin
       otcOnTerminatedSimple();
-    end);
+    end;
+  otcOnTerminatedExec.SetOnTerminated(onTerminated);
   CreateInternalMonitor;
   Result := Self;
 end; { TOmniTaskControl.OnTerminated }

@@ -644,7 +644,7 @@ label
   TryAgain;
 begin
   {$IFDEF OTL_HaveCmpx16b}
-  ThreadReference := GetThreadId + 1;                           //Reference.bit0 := 1
+  ThreadReference := OtlSync.GetThreadId + 1;                   //Reference.bit0 := 1
   with chain do begin
 TryAgain:
     TaskCounter := obsTaskPopLoops;
@@ -896,7 +896,7 @@ label
   TryAgain;
 begin
   {$IFDEF OTL_HaveCmpx16b}
-  ThreadReference := GetThreadId + 1;                           //Reference.bit0 := 1
+  ThreadReference := OtlSync.GetThreadId + 1;                   //Reference.bit0 := 1
   with ringBuffer^ do begin
 TryAgain:
     TaskCounter := obqTaskInsertLoops;
@@ -1031,7 +1031,7 @@ label
   TryAgain;
 begin
   {$IFDEF OTL_HaveCmpx16b}
-  Reference := GetThreadId + 1;                                 //Reference.bit0 := 1
+  Reference := OtlSync.GetThreadId + 1;                         //Reference.bit0 := 1
   with ringBuffer^ do begin
 TryAgain:
     TaskCounter := obqTaskRemoveLoops;

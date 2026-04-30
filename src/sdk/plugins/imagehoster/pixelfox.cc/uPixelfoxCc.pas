@@ -5,6 +5,11 @@ interface
 uses
   // Delphi
   Windows, SysUtils, Classes, Variants, ActiveX,
+  {$IF CompilerVersion >= 23.0}
+  Vcl.AxCtrls,
+  {$ELSE}
+  AxCtrls,
+  {$IFEND}
   // HTTPManager
   uHTTPInterface, uHTTPClasses,
   // Plugin system
@@ -533,7 +538,7 @@ var
   LRequestID: Double;
   LHTTPProcess: IHTTPProcess;
   LOleStream: TOleStream;
-  LDummy: Int64;
+  LDummy: LargeUInt;
   LFileStream: TFileStream;
 begin
   Result := False;
